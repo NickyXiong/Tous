@@ -1,0 +1,47 @@
+[History]
+1=#P0#=mb	#P1#=SetK3Server	#P2#=TB_Runtime/LocalContent/SetK3Server	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131220200957	#P7#=0	#P8#=8	.
+2=#P0#=mb	#P1#=GetK3Server	#P2#=TB_Runtime/LocalContent/GetK3Server	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131220193057	#P7#=0	#P8#=17	.
+3=#P0#=mb	#P1#=IsRightTasks	#P2#=TB_Runtime/LocalContent/IsRightTasks	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131106020628	#P7#=0	#P8#=23	.
+4=#P0#=mb	#P1#=GetTasks	#P2#=TB_Runtime/LocalContent/GetTasks	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131106015830	#P7#=0	#P8#=34	.
+5=#P0#=mb	#P1#=SetTasks	#P2#=TB_Runtime/LocalContent/SetTasks	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131106015508	#P7#=0	#P8#=-2	.
+6=#P0#=mb	#P1#=GetRemotes	#P2#=TB_Runtime/LocalContent/GetRemotes	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131106015247	#P7#=0	#P8#=10	.
+7=#P0#=mb	#P1#=DirectoryAsSet	#P2#=TB_Runtime/Functions/DirectoryAsSet [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131106015226	#P7#=0	#P8#=0	.
+8=#P0#=mb	#P1#=InitConnection	#P2#=TB_Runtime/mParam/InitConnection	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910130051	#P7#=0	#P8#=21	.
+9=#P0#=mb	#P1#=Init	#P2#=TB_Runtime/ITask/Init	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910114834	#P7#=0	#P8#=0	.
+10=#P0#=mb	#P1#=GetSmtp	#P2#=TB_Runtime/LocalContent/GetSmtp	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130704192854	#P7#=0	#P8#=14	.
+11=#P0#=mb	#P1#=SetSmtp	#P2#=TB_Runtime/LocalContent/SetSmtp	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130704192808	#P7#=0	#P8#=1	.
+12=#P0#=mb	#P1#=SaveData	#P2#=TB_Runtime/Noteset/SaveData	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130619174433	#P7#=0	#P8#=46	.
+13=#P0#=mb	#P1#=Run	#P2#=TB_Runtime/ITask/Run	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130325172901	#P7#=0	#P8#=-1	.
+14=#P0#=mb	#P1#=RetUserDefine	#P2#=TB_Runtime/Functions/RetUserDefine	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130325165440	#P7#=0	#P8#=5	.
+15=#P0#=mb	#P1#=SetUserDefine	#P2#=TB_Runtime/Functions/SetUserDefine	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130325165403	#P7#=0	#P8#=0	.
+16=#P0#=mb	#P1#=Log	#P2#=TB_Runtime/Functions/Log	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130325165222	#P7#=0	#P8#=0	.
+17=#P0#=mb	#P1#=ExecuteTransSQL	#P2#=TB_Runtime/Functions/ExecuteTransSQL	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130325164139	#P7#=0	#P8#=11	.
+18=#P0#=mb	#P1#=DirectoryAsLog	#P2#=TB_Runtime/Functions/DirectoryAsLog [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20130325163752	#P7#=0	#P8#=4	.
+19=#P0#=mb	#P1#=SaveAs	#P2#=TB_Runtime/Noteset/SaveAs	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130314125233	#P7#=0	#P8#=16	.
+20=#P0#=mb	#P1#=IndexNext	#P2#=TB_Runtime/Noteset/IndexNext	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130223165728	#P7#=0	#P8#=15	.
+21=#P0#=mb	#P1#=EOF	#P2#=TB_Runtime/Noteset/EOF [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20130223165657	#P7#=0	#P8#=1	.
+22=#P0#=mb	#P1#=LoadData	#P2#=TB_Runtime/Noteset/LoadData	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130223165635	#P7#=0	#P8#=59	.
+23=#P0#=mb	#P1#=BOF	#P2#=TB_Runtime/Noteset/BOF [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20130223165626	#P7#=0	#P8#=4	.
+24=#P0#=mb	#P1#=AppendByIndex	#P2#=TB_Runtime/Noteset/AppendByIndex	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130223163200	#P7#=0	#P8#=15	.
+25=#P0#=mb	#P1#=AppendByIndexs	#P2#=TB_Runtime/Noteset/AppendByIndexs	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130223163037	#P7#=0	#P8#=17	.
+26=#P0#=mb	#P1#=Dispose	#P2#=TB_Runtime/Noteset/Dispose	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130223162039	#P7#=0	#P8#=11	.
+27=#P0#=mb	#P1#=IndexCount	#P2#=TB_Runtime/Noteset/IndexCount [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20130223161831	#P7#=0	#P8#=1	.
+28=#P0#=mb	#P1#=IndexPrevious	#P2#=TB_Runtime/Noteset/IndexPrevious	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130217192617	#P7#=0	#P8#=7	.
+29=#P0#=mb	#P1#=GetMetadatas	#P2#=TB_Runtime/LocalContent/GetMetadatas	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130217152155	#P7#=0	#P8#=-1	.
+30=#P0#=mb	#P1#=GetData	#P2#=TB_Runtime/LocalContent/GetData	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130208010902	#P7#=0	#P8#=18	.
+31=#P0#=mb	#P1#=SetRemotes	#P2#=TB_Runtime/LocalContent/SetRemotes	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130207231636	#P7#=0	#P8#=2	.
+32=#P0#=mb	#P1#=K3ConnectionString	#P2#=TB_Runtime/Functions/K3ConnectionString [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20130131002132	#P7#=0	#P8#=2	.
+33=#P0#=mb	#P1#=GetActions	#P2#=TB_Runtime/LocalContent/GetActions	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130154933	#P7#=0	#P8#=15	.
+34=#P0#=mb	#P1#=Dispose	#P2#=TB_Runtime/ITask/Dispose	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130095151	#P7#=0	#P8#=3	.
+35=#P0#=mb	#P1#=ExecuteSQL	#P2#=TB_Runtime/Functions/ExecuteSQL	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130094953	#P7#=0	#P8#=1	.
+36=#P0#=mb	#P1#=MakeDirByLocal	#P2#=TB_Runtime/Functions/MakeDirByLocal	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130094833	#P7#=0	#P8#=18	.
+37=#P0#=mb	#P1#=UboundEx	#P2#=TB_Runtime/Functions/UboundEx	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130094646	#P7#=0	#P8#=0	.
+38=#P0#=mb	#P1#=Class_Terminate	#P2#=TB_Runtime/Functions/Class_Terminate	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20130130024126	#P7#=0	#P8#=-1	.
+39=#P0#=mb	#P1#=Dispose	#P2#=TB_Runtime/mParam/Dispose	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130024120	#P7#=0	#P8#=8	.
+40=#P0#=mb	#P1#=K3Log	#P2#=TB_Runtime/Functions/K3Log	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130023211	#P7#=0	#P8#=12	.
+41=#P0#=mb	#P1#=Init	#P2#=TB_Runtime/ILoad/Init	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130013549	#P7#=0	#P8#=1	.
+42=#P0#=mb	#P1#=LoadAs	#P2#=TB_Runtime/Noteset/LoadAs	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130129124101	#P7#=0	#P8#=15	.
+43=#P0#=mb	#P1#=GetDataByIndex	#P2#=TB_Runtime/Noteset/GetDataByIndex	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130128100506	#P7#=0	#P8#=21	.
+44=#P0#=mb	#P1#=GetMails	#P2#=TB_Runtime/LocalContent/GetMails	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130124201640	#P7#=0	#P8#=30	.
+45=#P0#=mb	#P1#=SetData	#P2#=TB_Runtime/LocalContent/SetData	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130124190606	#P7#=0	#P8#=3	.
+46=#P0#=mb	#P1#=GetKeyByIndex	#P2#=TB_Runtime/Noteset/GetKeyByIndex	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130123101326	#P7#=0	#P8#=4	.

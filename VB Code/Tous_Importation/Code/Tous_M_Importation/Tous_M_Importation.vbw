@@ -1,0 +1,11 @@
+clsImportFunction = 75, 98, 759, 450, Z
+CDataSource = 44, 44, 759, 658, C
+CParse = 88, 88, 738, 702, 
+GLEnums = 0, 0, 0, 0, C
+Globals = 0, 0, 0, 0, C
+modConst = 0, 0, 0, 0, C
+modParse = 0, 0, 0, 0, C
+modPub = 66, 66, 613, 680, C
+Strings = 0, 0, 0, 0, C
+SysEnums = 0, 0, 0, 0, C
+KdCommon = 132, 132, 709, 746, C

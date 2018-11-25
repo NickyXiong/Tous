@@ -1,0 +1,34 @@
+[POS Integration(Realtime)]
+03	01	01	Tous_C_Action.POS_01
+03	01	02	Tous_C_Action.POS_02
+03	01	03	Tous_C_Action.POS_03
+03	01	04	Tous_C_Action.POS_04
+03	01	05	Tous_C_Action.POS_05
+03	01	06	Tous_C_Action.POS_06
+03	01	07	Tous_C_Action.POS_07
+03	01	08	Tous_C_Action.POS_08
+03	01	09	Tous_C_Action.POS_09
+
+[POS Integration(Daily)]
+04	02	10	Tous_C_Action.POS_10
+04	02	11	Tous_C_Action.POS_11
+04	02	12	Tous_C_Action.POS_12
+
+
+[HQ Integration]
+05	03	20	Tous_C_Action.HQ_01
+05	03	21	Tous_C_Action.HQ_02
+05	03	22	
+05	03	23	Tous_C_Action.HQ_04
+05	03	24	Tous_C_Action.HQ_05
+05	03	25	Tous_C_Action.HQ_06
+05	03	26	Tous_C_Action.HQ_07
+05	03	27	
+05	03	28	Tous_C_Action.HQ_09
+05	03	29	Tous_C_Action.HQ_10
+05	03	30	
+
+
+[Email Alert]
+11	01	0	TB_TaskSend.TBSend
+

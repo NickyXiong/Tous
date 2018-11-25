@@ -1,0 +1,47 @@
+[基础资料接口]
+03	01	01	ST_NewClient_Action.Action_01
+03	01	02	ST_NewClient_Action.Action_02
+03	01	03	
+03	01	04	
+03	01	05	ST_NewClient_Action.Action_15
+03	01	06	ST_NewClient_Action.Action_21_1
+03	01	07	ST_NewClient_Action.Action_21_1
+03	01	08	ST_NewClient_Action.Action_21
+03	01	09	ST_NewClient_Action.Action_25_1
+03	01	10	ST_NewClient_Action.Action_25_1
+03	01	11	ST_NewClient_Action.Action_25
+
+
+[统冠接口]
+04	02	12	Tous_C_Action.Action_08
+04	02	13	Tous_C_Action.Action_07
+04	02	14	Tous_C_Action.Action_06
+04	02	15	Tous_C_Action.Action_05
+04	02	16	ST_NewClient_Action.Action_22
+04	02	17	ST_NewClient_Action.Action_24
+04	02	18	ST_NewClient_Action.Action_24
+04	02	19	ST_NewClient_Action.Action_24
+
+
+[中商接口]
+07	05	20	ST_NewClient_Action.Action_29
+07	05	21	ST_NewClient_Action.Action_28
+07	05	22	ST_NewClient_Action.Action_12
+07	05	23	ST_NewClient_Action.Action_07
+07	05	24	ST_NewClient_Action.Action_09
+07	05	33	ST_NewClient_Action.Action_03
+
+[WMS接口]
+05	03	25	ST_NewClient_Action.Action_23
+05	03	26	ST_NewClient_Action.Action_23
+05	03	27	ST_NewClient_Action.Action_23
+05	03	28	ST_NewClient_Action.Action_13
+05	03	29	ST_NewClient_Action.Action_14
+05	03	30	ST_NewClient_Action.Action_24
+05	03	31	ST_NewClient_Action.Action_24
+05	03	32	ST_NewClient_Action.Action_24
+
+
+[发送日志]
+11	01	0	TB_TaskSend.TBSend
+

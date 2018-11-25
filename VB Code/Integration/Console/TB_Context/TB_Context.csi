@@ -1,0 +1,101 @@
+[History]
+1=#P0#=mb	#P1#=Size	#P2#=TB_Context/TBActions/Size [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131220213839	#P7#=0	#P8#=2	.
+2=#P0#=mb	#P1#=Action	#P2#=TB_Context/TBActions/Action [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131220213814	#P7#=0	#P8#=2	.
+3=#P0#=mb	#P1#=Action	#P2#=TB_Context/TBActions/Action [Let]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131220213805	#P7#=0	#P8#=2	.
+4=#P0#=mb	#P1#=Lookup	#P2#=TB_Context/TBTasks/Lookup	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131220200321	#P7#=0	#P8#=4	.
+5=#P0#=mb	#P1#=Add	#P2#=TB_Context/TBTasks/Add	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131220200226	#P7#=0	#P8#=8	.
+6=#P0#=mb	#P1#=Remove	#P2#=TB_Context/TBTasks/Remove	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131220195750	#P7#=0	#P8#=0	.
+7=#P0#=mb	#P1#=MakeDirectory	#P2#=TB_Context/XZInternet/MakeDirectory	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131220005031	#P7#=0	#P8#=15	.
+8=#P0#=mb	#P1#=MakeDirByLocal	#P2#=TB_Context/XZInternet/MakeDirByLocal	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131220191231	#P7#=0	#P8#=23	.
+9=#P0#=mb	#P1#=Download	#P2#=TB_Context/XZInternet/Download	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131219225149	#P7#=0	#P8#=7	.
+10=#P0#=mb	#P1#=OutputMemory	#P2#=TB_Context/XZMemory/OutputMemory	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131219220524	#P7#=0	#P8#=6	.
+11=#P0#=mb	#P1#=InputMemory	#P2#=TB_Context/XZMemory/InputMemory	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131219220313	#P7#=0	#P8#=8	.
+12=#P0#=mb	#P1#=Lookup	#P2#=TB_Context/TBParameters/Lookup	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131219213028	#P7#=0	#P8#=0	.
+13=#P0#=mb	#P1#=Add	#P2#=TB_Context/TBParameters/Add	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131219212955	#P7#=0	#P8#=2	.
+14=#P0#=mb	#P1#=Process	#P2#=TB_Context/XZProcess/Process [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131218202357	#P7#=0	#P8#=0	.
+15=#P0#=mb	#P1#=RunProcess	#P2#=TB_Context/XZProcess/RunProcess	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131218201710	#P7#=0	#P8#=11	.
+16=#P0#=mb	#P1#=IsLock	#P2#=TB_Context/XZShareLock/IsLock	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131218174040	#P7#=0	#P8#=10	.
+17=#P0#=mb	#P1#=Remove	#P2#=TB_Context/TBMetadatas/Remove	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131218145837	#P7#=0	#P8#=14	.
+18=#P0#=mb	#P1#=Remote	#P2#=TB_Context/TBRemotes/Remote [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131218131941	#P7#=0	#P8#=0	.
+19=#P0#=mb	#P1#=Remove	#P2#=TB_Context/TBRemotes/Remove	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131218131919	#P7#=0	#P8#=-1	.
+20=#P0#=mb	#P1#=DoLock	#P2#=TB_Context/XZShareLock/DoLock	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217234151	#P7#=0	#P8#=11	.
+21=#P0#=mb	#P1#=SetShareAsNullString	#P2#=TB_Context/XZShareLock/SetShareAsNullString	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217234044	#P7#=0	#P8#=2	.
+22=#P0#=mb	#P1#=SetShareAsNothing	#P2#=TB_Context/XZShareLock/SetShareAsNothing	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217231748	#P7#=0	#P8#=3	.
+23=#P0#=mb	#P1#=GetShareByNotice	#P2#=TB_Context/XZShareLock/GetShareByNotice	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217201434	#P7#=0	#P8#=5	.
+24=#P0#=mb	#P1#=GetIdentiryByIndex	#P2#=TB_Context/XZShareLock/GetIdentiryByIndex	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217195511	#P7#=0	#P8#=-1	.
+25=#P0#=mb	#P1#=Lookup	#P2#=TB_Context/TBRemotes/Lookup	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217170145	#P7#=0	#P8#=10	.
+26=#P0#=mb	#P1#=Remote	#P2#=TB_Context/TBRemotes/Remote [Let]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131217155936	#P7#=0	#P8#=2	.
+27=#P0#=mb	#P1#=DeLock	#P2#=TB_Context/XZShareLock/DeLock	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217113800	#P7#=0	#P8#=9	.
+28=#P0#=mb	#P1#=InitShare	#P2#=TB_Context/XZShareLock/InitShare	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217113719	#P7#=0	#P8#=15	.
+29=#P0#=mb	#P1#=Class_Terminate	#P2#=TB_Context/XZShareLock/Class_Terminate	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20131217113703	#P7#=0	#P8#=2	.
+30=#P0#=mb	#P1#=Process	#P2#=TB_Context/XZProcessEx/Process [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131217113652	#P7#=0	#P8#=1	.
+31=#P0#=mb	#P1#=Class_Initialize	#P2#=TB_Context/TBMetadatas/Class_Initialize	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20131217113511	#P7#=0	#P8#=2	.
+32=#P0#=mb	#P1#=Count	#P2#=TB_Context/XZMemory/Count [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131217004229	#P7#=0	#P8#=1	.
+33=#P0#=mb	#P1#=NewMemory	#P2#=TB_Context/XZMemory/NewMemory	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217004218	#P7#=0	#P8#=23	.
+34=#P0#=mb	#P1#=Size	#P2#=TB_Context/XZMemory/Size [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131217004207	#P7#=0	#P8#=1	.
+35=#P0#=mb	#P1#=OpenMemory	#P2#=TB_Context/XZMemory/OpenMemory	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217003223	#P7#=0	#P8#=10	.
+36=#P0#=mb	#P1#=Dispose	#P2#=TB_Context/XZMemory/Dispose	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217003149	#P7#=0	#P8#=7	.
+37=#P0#=mb	#P1#=StopProcess	#P2#=TB_Context/XZProcess/StopProcess	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217000932	#P7#=0	#P8#=6	.
+38=#P0#=mb	#P1#=Add	#P2#=TB_Context/TBRemotes/Add	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131220181341	#P7#=0	#P8#=9	.
+39=#P0#=mb	#P1#=Class_Terminate	#P2#=TB_Context/XZInternet/Class_Terminate	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20131216152437	#P7#=0	#P8#=-2	.
+40=#P0#=mb	#P1#=RemoveProcess	#P2#=TB_Context/XZProcess/RemoveProcess	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131216113604	#P7#=0	#P8#=7	.
+41=#P0#=mb	#P1#=Value	#P2#=TB_Context/TBParameters/Value [Let]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131216111042	#P7#=0	#P8#=2	.
+42=#P0#=mb	#P1#=Value	#P2#=TB_Context/TBParameters/Value [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131216111021	#P7#=0	#P8#=1	.
+43=#P0#=mb	#P1#=Size	#P2#=TB_Context/TBParameters/Size [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131216111005	#P7#=0	#P8#=4	.
+44=#P0#=mb	#P1#=Key	#P2#=TB_Context/TBParameters/Key [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131216110944	#P7#=0	#P8#=0	.
+45=#P0#=mb	#P1#=Key	#P2#=TB_Context/TBParameters/Key [Let]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131216110942	#P7#=0	#P8#=4	.
+46=#P0#=mb	#P1#=RemoveProcessByIndex	#P2#=TB_Context/XZProcess/RemoveProcessByIndex	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131215235056	#P7#=0	#P8#=13	.
+47=#P0#=mb	#P1#=StopProcessByIndex	#P2#=TB_Context/XZProcess/StopProcessByIndex	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131215234447	#P7#=0	#P8#=14	.
+48=#P0#=mb	#P1#=GetProcess	#P2#=TB_Context/XZProcess/GetProcess	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131215234239	#P7#=0	#P8#=3	.
+49=#P0#=mb	#P1#=OpenProcess	#P2#=TB_Context/XZProcess/OpenProcess	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131215232545	#P7#=0	#P8#=76	.
+50=#P0#=mb	#P1#=GetStatus	#P2#=TB_Context/XZProcess/GetStatus	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131215225841	#P7#=0	#P8#=7	.
+51=#P0#=mb	#P1#=Dispose	#P2#=TB_Context/XZProcess/Dispose	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131215224019	#P7#=0	#P8#=-1	.
+52=#P0#=mb	#P1#=Class_Terminate	#P2#=TB_Context/XZProcess/Class_Terminate	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20131215223852	#P7#=0	#P8#=3	.
+53=#P0#=mb	#P1#=Lookup	#P2#=TB_Context/XZProcess/Lookup	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131215223831	#P7#=0	#P8#=7	.
+54=#P0#=mb	#P1#=Status	#P2#=TB_Context/XZProcess/Status [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131215223220	#P7#=0	#P8#=1	.
+55=#P0#=mb	#P1#=GetCurrentID	#P2#=TB_Context/XZProcess/GetCurrentID	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131215172709	#P7#=0	#P8#=1	.
+56=#P0#=mb	#P1#=Remove	#P2#=TB_Context/TBParameters/Remove	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131213215752	#P7#=0	#P8#=7	.
+57=#P0#=mb	#P1#=Parameter	#P2#=TB_Context/TBParameters/Parameter [Let]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131213215220	#P7#=0	#P8#=0	.
+58=#P0#=mb	#P1#=Parameter	#P2#=TB_Context/TBParameters/Parameter [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131213215213	#P7#=0	#P8#=1	.
+59=#P0#=mb	#P1#=Class_Initialize	#P2#=TB_Context/TBRemotes/Class_Initialize	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20131213200631	#P7#=0	#P8#=2	.
+60=#P0#=mb	#P1#=Class_Terminate	#P2#=TB_Context/TBRemotes/Class_Terminate	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20131213193952	#P7#=0	#P8#=2	.
+61=#P0#=mb	#P1#=Size	#P2#=TB_Context/TBRemotes/Size [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20131213193932	#P7#=0	#P8#=1	.
+62=#P0#=mb	#P1#=SetShareByResouce	#P2#=TB_Context/XZShareLock/SetShareByResouce	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910125602	#P7#=0	#P8#=5	.
+63=#P0#=mb	#P1#=IsLostEfficacy	#P2#=TB_Context/XZShareLock/IsLostEfficacy	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910125521	#P7#=0	#P8#=20	.
+64=#P0#=mb	#P1#=Rename	#P2#=TB_Context/XZInternet/Rename	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130508161332	#P7#=0	#P8#=4	.
+65=#P0#=mb	#P1#=RemoveFile	#P2#=TB_Context/XZInternet/RemoveFile	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130508161236	#P7#=0	#P8#=-1	.
+66=#P0#=mb	#P1#=GetStatusByIndex	#P2#=TB_Context/XZProcessEx/GetStatusByIndex	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130220104855	#P7#=0	#P8#=6	.
+67=#P0#=mb	#P1#=Add	#P2#=TB_Context/TBMetadatas/Add	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130208002556	#P7#=0	#P8#=0	.
+68=#P0#=mb	#P1#=Lookup	#P2#=TB_Context/TBMetadatas/Lookup	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130208002516	#P7#=0	#P8#=6	.
+69=#P0#=mb	#P1#=StartProcessByIndex	#P2#=TB_Context/XZProcessEx/StartProcessByIndex	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131184811	#P7#=0	#P8#=-1	.
+70=#P0#=mb	#P1#=RunProcess	#P2#=TB_Context/XZProcessEx/RunProcess	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131184702	#P7#=0	#P8#=20	.
+71=#P0#=mb	#P1#=StopProcess	#P2#=TB_Context/XZProcessEx/StopProcess	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131184644	#P7#=0	#P8#=0	.
+72=#P0#=mb	#P1#=StopProcessByIndex	#P2#=TB_Context/XZProcessEx/StopProcessByIndex	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131184615	#P7#=0	#P8#=0	.
+73=#P0#=mb	#P1#=Lookup	#P2#=TB_Context/XZProcessEx/Lookup	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131184545	#P7#=0	#P8#=9	.
+74=#P0#=mb	#P1#=StartProcess	#P2#=TB_Context/XZProcessEx/StartProcess	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131184533	#P7#=0	#P8#=6	.
+75=#P0#=mb	#P1#=NewProcess	#P2#=TB_Context/XZProcessEx/NewProcess	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131184522	#P7#=0	#P8#=9	.
+76=#P0#=mb	#P1#=RemoveProcessByIndex	#P2#=TB_Context/XZProcessEx/RemoveProcessByIndex	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131184334	#P7#=0	#P8#=3	.
+77=#P0#=mb	#P1#=GetMask	#P2#=TB_Context/XZProcessEx/GetMask	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131183431	#P7#=0	#P8#=9	.
+78=#P0#=mb	#P1#=GetStatus	#P2#=TB_Context/XZProcessEx/GetStatus	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131182128	#P7#=0	#P8#=5	.
+79=#P0#=mb	#P1#=RemoveProcess	#P2#=TB_Context/XZProcessEx/RemoveProcess	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131182106	#P7#=0	#P8#=0	.
+80=#P0#=mb	#P1#=GetStatusByIndex	#P2#=TB_Context/XZProcess/GetStatusByIndex	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131174426	#P7#=0	#P8#=11	.
+81=#P0#=mb	#P1#=Status	#P2#=TB_Context/XZProcessEx/Status [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20130131174248	#P7#=0	#P8#=1	.
+82=#P0#=mb	#P1#=Connection	#P2#=TB_Context/XZInternet/Connection	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131165716	#P7#=0	#P8#=12	.
+83=#P0#=mb	#P1#=State	#P2#=TB_Context/XZInternet/State [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20130131162510	#P7#=0	#P8#=-1	.
+84=#P0#=mb	#P1#=Dispose	#P2#=TB_Context/XZInternet/Dispose	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130131162428	#P7#=0	#P8#=14	.
+85=#P0#=mb	#P1#=Add	#P2#=TB_Context/TBActions/Add	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130154823	#P7#=0	#P8#=0	.
+86=#P0#=mb	#P1#=StartProcessByIndex	#P2#=TB_Context/XZProcess/StartProcessByIndex	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130151042	#P7#=0	#P8#=13	.
+87=#P0#=mb	#P1#=StartProcess	#P2#=TB_Context/XZProcess/StartProcess	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130143537	#P7#=0	#P8#=7	.
+88=#P0#=mb	#P1#=NewProcess	#P2#=TB_Context/XZProcess/NewProcess	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130143353	#P7#=0	#P8#=8	.
+89=#P0#=mb	#P1#=GetShareByIndex	#P2#=TB_Context/XZShareLock/GetShareByIndex	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130125171604	#P7#=0	#P8#=8	.
+90=#P0#=mb	#P1#=IsLockByResource	#P2#=TB_Context/XZShareLock/IsLockByResource	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130125152424	#P7#=0	#P8#=13	.
+91=#P0#=mb	#P1#=Class_Initialize	#P2#=TB_Context/XZShareLock/Class_Initialize	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20130125105626	#P7#=0	#P8#=0	.
+92=#P0#=mb	#P1#=Task	#P2#=TB_Context/TBTasks/Task [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20130124215537	#P7#=0	#P8#=0	.
+93=#P0#=mb	#P1#=Task	#P2#=TB_Context/TBTasks/Task [Let]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20130124215537	#P7#=0	#P8#=2	.
+94=#P0#=mb	#P1#=Class_Terminate	#P2#=TB_Context/TBTasks/Class_Terminate	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20130124215143	#P7#=0	#P8#=0	.
+95=#P0#=mb	#P1#=AddCCMail	#P2#=TB_Context/TBMailsEx/AddCCMail	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130124200551	#P7#=0	#P8#=4	.
+96=#P0#=mb	#P1#=AddToMail	#P2#=TB_Context/TBMailsEx/AddToMail	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130124200541	#P7#=0	#P8#=-1	.
+97=#P0#=mb	#P1#=Class_Terminate	#P2#=TB_Context/TBMailsEx/Class_Terminate	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20130124200458	#P7#=0	#P8#=3	.
+98=#P0#=mb	#P1#=ToMail	#P2#=TB_Context/TBMailsEx/ToMail [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20130124195929	#P7#=0	#P8#=0	.
+99=#P0#=mb	#P1#=Key	#P2#=TB_Context/TBMailsEx/Key [Get]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20130124191629	#P7#=0	#P8#=0	.
+100=#P0#=mb	#P1#=CCMail	#P2#=TB_Context/TBMailsEx/CCMail [Set]	#P3#=	#P4#=	#P5#=MembPropertyPrivate	#P6#=20130124185904	#P7#=0	#P8#=1	.

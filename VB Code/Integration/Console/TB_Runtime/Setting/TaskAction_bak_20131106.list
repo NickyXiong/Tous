@@ -1,0 +1,77 @@
+[Product and Price interface]
+03	01	01	TB_Action_Tory.Action_01
+03	01	02	TB_Action_Tory.Action_02
+03	01	03	TB_Action_Tory.Action_05
+03	01	04	TB_Action_Tory.Action_03
+03	01	05	TB_Action_Tory.Action_03
+03	01	06	TB_Action_Tory.Action_04
+03	01	07	TB_Action_Tory.Action_04
+03	01	08	TB_Action_Tory.Action_06
+03	01	09	TB_Action_Tory.Action_07
+03	01	10	TB_Action_Tory.Action_08
+03	01	11	TB_Action_Tory.Action_09
+
+[Shipping information]
+04	02	12	TB_Action_Tory.Action_45
+04	02	13	
+04	02	14	TB_SynBill.Action_12	
+04	02	15	TB_SynBill.Action_122
+04	02	16	TB_SynBill.Action_13
+04	02	17	TB_SynBill.Action_13
+
+[Sales Transaction]
+05	03	18	TB_SynBill.Action_15
+05	03	19	TB_SynBill.Action_27
+
+[Stock Movement(W-S)]
+06	04	20	TB_Action_Tory.Action_20
+06	04	21	TB_Action_Tory.Action_17
+06	04	22	TB_Action_Tory.Action_172
+06	04	23	TB_Action_Tory.Action_18
+06	04	24	TB_Action_Tory.Action_18
+06	04	25	TB_SynBill.Action_19
+06	04	26	TB_SynBill.Action_26
+
+[Stock Movement(S-W)]
+07	05	27	TB_SynBill.Action_20		
+07	05	28	TB_SynBill.Action_21
+07	05	29	TB_SynBill.Action_212
+07	05	30	TB_SynBill.Action_22
+07	05	31	TB_SynBill.Action_22
+
+[Stock Movement(B-B)]
+08	06	32	TB_SynBill.Action_23		
+08	06	33	TB_SynBill.Action_24	
+08	06	34	TB_SynBill.Action_24	
+
+[Stock Movement(S-S)]
+09	07	35	TB_SynBill.Action_25	
+
+[Stock Image Report]
+10	08	36	TB_Action_Tory.Action_28
+10	08	37	TB_Action_Tory.Action_28
+10	08	38	TB_Action_Tory.Action_28
+10	08	39	TB_Action_Tory.Action_30
+10	08	40	TB_Action_Tory.Action_31
+
+[Send log]
+11	01	0	TB_TaskSend.TBSend
+
+[Stock Movement(W-W)]
+12	09	41	TB_Action_Tory.Action_41
+12	09	42	TB_Action_Tory.Action_42
+12	09	43	TB_Action_Tory.Action_43
+12	09	44	TB_Action_Tory.Action_43
+12	09	45	TB_SynBill.Action_45
+12	09	46	TB_SynBill.Action_452
+12	09	47	TB_SynBill.Action_46
+12	09	48	TB_SynBill.Action_46
+
+
+[Stock Adjustment]
+13	10	49	TB2_Action.Action_49
+
+[Exceptional email report]
+14	11	50	TB2_SendMail.Action_50
+14	11	51	TB2_SendMail.Action_51
+14	11	52	TB2_SendMail.Action_52

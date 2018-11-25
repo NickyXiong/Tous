@@ -1,0 +1,15 @@
+TYPE_TB = 66, 66, 778, 342, Z
+TBRemotes = 22, 22, 972, 298, 
+TBMetadatas = 132, 132, 1082, 408, 
+TBParameters = 88, 88, 800, 364, C
+XZInternet = 22, 22, 946, 324, 
+XZProcess = 66, 66, 983, 342, 
+TYPE_XZ = 44, 44, 994, 320, 
+mParam = 110, 110, 1060, 386, 
+XZMemory = 110, 110, 1060, 386, 
+XZShareLock = 66, 66, 1017, 368, 
+TBTasks = 132, 132, 844, 408, C
+TBActions = 22, 22, 734, 396, 
+TBMails = 22, 22, 1041, 365, C
+TBMailsEx = 66, 66, 1029, 383, C
+XZProcessEx = 132, 132, 1110, 457, 

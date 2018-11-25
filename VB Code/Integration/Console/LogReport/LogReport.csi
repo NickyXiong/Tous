@@ -1,0 +1,11 @@
+[History]
+1=#P0#=mb	#P1#=DoActionEx	#P2#=LogReport/TBSend/DoActionEx	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910180937	#P7#=0	#P8#=2	.
+2=#P0#=mb	#P1#=ILoad_Dispose	#P2#=LogReport/TBSend/ILoad_Dispose	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20130910174258	#P7#=0	#P8#=4	.
+3=#P0#=mb	#P1#=ILoad_Init	#P2#=LogReport/TBSend/ILoad_Init	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20130910174235	#P7#=0	#P8#=9	.
+4=#P0#=mb	#P1#=DoAction	#P2#=LogReport/TBSend/DoAction	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910163708	#P7#=0	#P8#=16	.
+5=#P0#=mb	#P1#=Main	#P2#=LogReport/mStart/Main	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910154313	#P7#=0	#P8#=24	.
+6=#P0#=mb	#P1#=ILoad_Run	#P2#=LogReport/TBSend/ILoad_Run	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20130910152754	#P7#=0	#P8#=4	.
+7=#P0#=mb	#P1#=DoAction	#P2#=LogReport/mStart/DoAction	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910152401	#P7#=0	#P8#=12	.
+8=#P0#=mb	#P1#=LogEx	#P2#=LogReport/mFunc/LogEx	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130704104012	#P7#=0	#P8#=0	.
+9=#P0#=mb	#P1#=GetRunParameter	#P2#=LogReport/mFunc/GetRunParameter	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130704101517	#P7#=0	#P8#=-6	.
+10=#P0#=mb	#P1#=GetRunCommand	#P2#=LogReport/mFunc/GetRunCommand	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130129001503	#P7#=0	#P8#=11	.

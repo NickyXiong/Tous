@@ -1,0 +1,7 @@
+VBGROUP 5.0
+Project=TB_Runtime\TB_Runtime.vbp
+Project=TaskSystem\TaskSystem.vbp
+Project=TB_Context\TB_Context.vbp
+Project=FileSystem\FileSystem.vbp
+Project=LogReport\LogReport.vbp
+StartupProject=TBMain\TBMain.vbp

@@ -1,0 +1,6 @@
+TASK01	1	1	FileSystem.exe	@TASK:01@ACTION:01@DEL:1	1	120	04:00	00:00	EDI File Download
+TASK02	1	1	FileSystem.exe	@TASK:02@ACTION:02@DEL:0	1	120	04:00	00:00	EDI File Upload
+TASK03	0	1	TaskSystem.exe	@TASK:03@ACTION:01	1	120	00:01	00:00	POS Integration(Realtime)
+TASK04	0	1	TaskSystem.exe	@TASK:04@ACTION:02	1	120	04:00	00:00	POS Integration(Daily)
+TASK05	0	1	TaskSystem.exe	@TASK:05@ACTION:03	1	120	04:00	00:00	HQ Integration(Realtime)
+TASK11	1	1	LogReport.exe	@TASK:11@ACTION:01	2	50	04:00	00:00	Email Alert

@@ -1,0 +1,6 @@
+cd /TEST_ERP_TO_POS/SHOP/
+lcd "C:\Tous\Code\Console\FileSystem\Cache\\TEST_ERP_TO_POS\SHOP\"
+mput SHOP_*.txt
+lcd "C:\Tous\Code\Console\FileSystem\UploadValidate\"
+mget SHOP_*.txt
+bye

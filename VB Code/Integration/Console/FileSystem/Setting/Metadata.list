@@ -1,0 +1,29 @@
+[POS Integration(Realtime)]
+01	8	0	POS_SAL_			txt	\TEST_POS_to_ERP\SAL\
+02	8	0	POS_REC_			txt	\TEST_POS_to_ERP\REC\
+03	8	0	POS_STK_			txt	\TEST_POS_to_ERP\STK\
+04	8	0	POS_ADJ_			txt	\TEST_POS_to_ERP\ADJ\
+05	8	0	POS_STR_			txt	\TEST_POS_to_ERP\STR\
+06	0	8	ASN_	YYYYMMDD	######	txt	\TEST_ERP_TO_POS\ASN\
+07	0	8	TRANSFER_	YYYYMMDD	######	txt	\TEST_ERP_TO_POS\TRANSFER\
+08	0	8	STKADJ_	YYYYMMDD	######	txt	\TEST_ERP_TO_POS\STKADJ\
+09	0	8	INVENT_	YYYYMMDD	######	txt	\TEST_ERP_TO_POS\INVENT\
+
+[POS Integration(Daily)]
+10	8	0	POS_IMG_			txt	\TEST_POS_to_ERP\IMG\
+11	0	8	SKU_	YYYYMMDD	######	txt	\TEST_ERP_TO_POS\SKU\
+12	0	8	SHOP_	YYYYMMDD	######	txt	\TEST_ERP_TO_POS\SHOP\
+
+
+[HQ Integration]
+20	2	0	ART_			xml	\out\pending\
+21	2	0	PRICELIST_			xml	\out\pending\
+22	2	0	STORES_			xml	\out\pending\
+23	0	2	SALES_	YYYYMMDD_HHmm	##	xml	\in\pending\
+24	2	0	DELIVERIES_			xml	\out\pending\
+25	0	2	DELIVERIES_	YYYYMMDD_HHmm	##	xml	\in\pending\
+26	0	2	RECEIPT_	YYYYMMDD_HHmm	##	xml	\in\pending\
+27	0	2	INVENTORY_	YYYYMMDD_HHmm	##	xml	\in\pending\
+28	0	2	TC_STOCKADJUSTMENTS_	YYYYMMDD_HHmm	##	xml	\in\pending\
+29	0	2	PO_	YYYYMMDD_HHmm	##	xml	\in\pending\
+30	0	2	ART_			xml	\out\pending\error\

@@ -1,0 +1,5 @@
+cd /TEST_POS_to_ERP/
+lcd "C:\Tous\Code\Console\FileSystem\Cache\\TEST_POS_to_ERP\"
+mget POS_ADJ_*.txt
+rm POS_ADJ_*.txt
+bye

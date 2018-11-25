@@ -1,0 +1,80 @@
+[Product and Price interface]
+01	0	4	XXSKU_	YYYYMMDD	######	txt	\LIVE\In\
+02	4	0	BZSM_			txt	\k3.ccn\LIVE\scan\
+03	0	4	CPSJ_	YYYYMMDD	######	txt	\k3.ccn\LIVE\mater\
+04	4	0	HY_			txt	\crm\UAT\
+05	4	0	FWCX_			txt	\crm\UAT\
+06	0	4	SKU_	YYMMDD	######	txt	\TG\PROD\OUT\
+07	0	4	CUS_	YYMMDD	######	txt	\TG\PROD\OUT\
+08	0	8	RM_PRPROD_	YYMMDD	###	txt	\LIVE\Out\
+09	0	8	RM_PRITDE_	YYMMDD	###	txt	\LIVE\Out\
+10	0	8	RM_PRSKU_	YYMMDD	###	txt	\LIVE\Out\
+11	0	8	RM_PRTARI_	YYMMDD	###	txt	\LIVE\Out\
+
+[Shipping information]
+12	4	0	ASN_	YYYYMMDD	######	txt	\LIVE\In\
+13	4	0	GRN_	YYYYMMDD	##########	txt	\LIVE\Out\
+14	0	4	DSO_	YYYYMMDD	######	txt	\PROD\Out\
+15	0	4	DSO_	YYYYMMDD	######	txt	\TG\PROD\Out\
+16	4	0	SP_Goodsreceive_3PLtoERP_	YYYYMMDD	###	txt	\LIVE\In\
+17	4	0	SP_Goodsreceive_3PLtoERP_	YYYYMMDD	###	txt	\LIVE\In\
+56	0	8	RM_PRTRDX3_	YYMMDD	###	txt	\LIVE\Out\
+
+[Sales Transaction]
+18	0	4	11DSO_	YYYYMMDD	######	txt	\PROD\Out\
+19	4	0	SHIP_			txt	\PROD\In\
+58	4	0	CKSM_			txt	\k3.ccn\LIVE\scan\
+59	0	4	DSO_	YYYYMMDD	######	txt	\TG\PROD\Out\
+60	4	0	SHIP_			txt	\TG\PROD\In\
+
+[Stock Movement(W-S)]
+20	4	0	STM_			txt	\LIVE\Out\
+21	4	0	PackConf_3PL2ToERP_	YYYYMMDD	###	txt	\UAT\In\
+22	0	4	STM_PickPack_ERPto3PL_	YYYYMMDD	###	txt	\UAT\Out\
+23	0	4	STM_PickPack_ERPto3PL2_	YYYYMMDD	###	txt	\UAT\Out\
+24	4	0	STM_ShipCONF_ERPto3PL_	YYYYMMDD	###	txt	\UAT\In\
+25	4	0	STM_ShipCONF_3PLtoERP_	YYYYMMDD	###	txt	\UAT\In\
+26	0	8	RM_PRTRDX3_	YYMMDD	###	txt	\UAT\Out\
+27	8	0	RM_WTSI_			txt	\UAT\In\
+
+[Stock Movement(S-W)]
+28	8	0	RM_STWO_			txt	\LIVET\In\
+29	0	4	STM_ReturnNotice_ERPto3PL_	YYYYMMDD	###	txt	\UAT\Out\
+30	0	4	STM_ReturnNotice_ERPto3PL2_	YYYYMMDD	###	txt	\UAT\Out\
+31	4	0	STM_ReturnCONF_ERPto3PL_	YYYYMMDD	###	txt	\UAT\In\
+32	4	0	STM_ReturnCONF_3PLtoERP_	YYYYMMDD	###	txt	\UAT\In\
+
+[Stock Movement(B-B)]
+33	8	0	BinToBin_			txt	\LIVE\In\
+34	4	0	3PL_BinToBin_	YYYYMMDD	###	txt	\UAT\In\
+35	4	0	3PL_BinToBin_	YYYYMMDD	###	txt	\UAT\In\
+
+[Stock Movement(S-S)]
+36	8	0	RM_STSIO_			txt	\UAT\In\
+
+[Stock Image Report]
+37	4	0	Img_3PLtoERP_	YYYYMMDD	###	txt	\UAT\In\
+38	4	0	Img_3PLtoERP_	YYYYMMDD	###	txt	\UAT\In\
+39	8	0	Img_POStoERP_			txt	\UAT\In\
+40	0	2	INVENTORY_	YYMMDD	#	txt	\UAT\Out\
+41	0	8	Img_ERPtoPOS_	YYMMDD	###	txt	\UAT\Out\
+
+[Stock Movement(W-W)]
+42	4	0	STM_	YYMMDD	######	txt	\TG\PROD\IN\
+43	0	4	STM_WTOW_PickPack_ERPto3PL2_	YYYYMMDD	###	txt	\UAT\Out\
+44	4	0	STM_			txt	\UAT\Out\
+45	4	0	PackConf_WTOW_3PL2ToERP_	YYYYMMDD	###	txt	\UAT\In\
+46	4	0	STM_WTOW_ShipCONF_3PLtoERP_	YYYYMMDD	###	txt	\UAT\In\
+47	4	0	STM_WTOW_ShipCONF_3PL2toERP_	YYYYMMDD	###	txt	\UAT\In\
+48	0	4	STM_WTOW_ReturnNotice_ERPto3PL_	YYYYMMDD	###	txt	\UAT\Out\
+49	0	4	STM_WTOW_ReturnNotice_ERPto3PL2_	YYYYMMDD	###	txt	\UAT\Out\
+50	4	0	STM_WTOW_ReturnCONF_3PLtoERP_	YYYYMMDD	###	txt	\UAT\In\
+51	4	0	STM_WTOW_ReturnCONF_3PL2toERP_	YYYYMMDD	###	txt	\UAT\In\
+
+[Stock Adjustment]
+52	0	8	ADJ_ERPTOPOS2_	YYMMDD	###	txt	\UAT\Out\
+
+[Exceptional email report]
+53	0	8	Exception_In-Transit_	YYMMDD	###	htm	\Except\Stock\TransMAIL\
+54	0	8	Delay_report_	YYMMDD	###	htm	\Except\Stock\DelayMAIL\
+55	0	8	Discontinued_report_	YYMMDD	###	htm	\Except\Stock\DisMAIL\

@@ -1,0 +1,6 @@
+cd /TEST_ERP_TO_POS/TRANSFER/
+lcd "C:\Tous\Code\Console\FileSystem\Cache\\TEST_ERP_TO_POS\TRANSFER\"
+mput TRANSFER_*.txt
+lcd "C:\Tous\Code\Console\FileSystem\UploadValidate\"
+mget TRANSFER_*.txt
+bye

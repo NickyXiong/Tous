@@ -1,0 +1,14 @@
+TASK01	1	0	FileSystem.exe	@TASK:01@ACTION:01@DEL:1	2	10	04:00	00:00	Download files
+TASK02	1	0	FileSystem.exe	@TASK:02@ACTION:02@DEL:0	2	10	04:00	00:00	Upload files
+TASK03	0	0	TaskSystem.exe	@TASK:03@ACTION:01	2	1	00:01	00:00	Product and Price interface
+TASK04	0	0	TaskSystem.exe	@TASK:04@ACTION:02	1	30	04:00	00:00	Shipping information
+TASK05	0	0	TaskSystem.exe	@TASK:05@ACTION:03	2	30	04:00	00:00	Sales Transaction
+TASK06	0	0	TaskSystem.exe	@TASK:06@ACTION:04	2	30	04:00	00:00	Stock Movement(W-S)
+TASK07	0	0	TaskSystem.exe	@TASK:07@ACTION:05	1	30	12:00	00:00	Stock Movement(S-W)
+TASK08	0	0	TaskSystem.exe	@TASK:08@ACTION:06	1	30	01:30	00:00	Stock Movement(B-B)
+TASK09	0	0	TaskSystem.exe	@TASK:09@ACTION:07	1	30	12:00	00:00	Stock Movement(S-S)
+TASK12	0	0	TaskSystem.exe	@TASK:12@ACTION:09	1	30	12:00	00:00	Stock Movement(W-W)
+TASK14	0	0	TaskSystem.exe	@TASK:14@ACTION:11	1	30	12:00	00:00	Exceptional email report
+TASK10	0	0	TaskSystem.exe	@TASK:10@ACTION:08	2	5	03:00	00:00	Stock Image Report
+TASK11	1	0	LogReport.exe	@TASK:11@ACTION:01	2	60	04:00	00:00	Send log
+TASK15	1	0	TaskSystem.exe	@TASK:15@ACTION:12	2	60	04:00	00:00	Stock Take

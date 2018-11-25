@@ -1,0 +1,83 @@
+[Product and Price interface]
+03	01	01	
+03	01	02	ST_NewClient_Action.Action_12
+03	01	03	ST_NewClient_Action.Action_07
+03	01	04	ST_NewClient_Action.Action_13
+03	01	05	ST_NewClient_Action.Action_14
+03	01	06	ST_Client_Action.Action_22
+03	01	07	ST_Client_Action.Action_23
+03	01	08	
+03	01	09	
+03	01	10	
+03	01	11		
+
+[Shipping information]
+04	02	12	ST_Client_Action.Action_02
+04	02	13	ST_Client_Action.Action_03
+04	02	14	ST_Client_Action.Action_04	
+04	02	15	ST_NewClient_Action.Action_10
+04	02	16	
+04	02	17	
+04	02	56	
+
+[Sales Transaction]
+05	03	18	
+05	03	19	ST_Client_Action.Action_05
+05	03	58	ST_NewClient_Action.Action_09
+05	03	59	
+05	03	60	ST_NewClient_Action.Action_11
+
+[Stock Movement(W-S)]
+06	04	20	ST_Client_Action.Action_06
+06	04	21	
+06	04	22	
+06	04	23	
+06	04	24	
+06	04	25	
+06	04	26	
+06	04	27	
+
+[Stock Movement(S-W)]
+07	05	28	
+07	05	29	
+07	05	30	
+07	05	31	
+07	05	32	
+
+[Stock Movement(B-B)]
+08	06	33	
+08	06	34	
+08	06	35	
+
+[Stock Movement(S-S)]
+09	07	36	
+
+[Stock Image Report]
+10	08	37	
+10	08	38	
+10	08	39	
+10	08	40	
+10	08	41	
+
+[Send log]
+11	01	0	TB_TaskSend.TBSend
+
+[Stock Movement(W-W)]
+12	09	42	ST_Client_Action.Action_21
+12	09	43	
+12	09	44	ST_Client_Action.Action_06
+12	09	45	
+12	09	46	
+12	09	47	
+12	09	48	
+12	09	49	
+12	09	50	
+12	09	51	
+
+[Stock Adjustment]
+13	10	52	
+
+[Exceptional email report]
+14	11	53	
+14	11	54	
+14	11	55	

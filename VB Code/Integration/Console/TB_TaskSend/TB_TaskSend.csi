@@ -1,0 +1,8 @@
+[History]
+1=#P0#=mb	#P1#=SendMailEx	#P2#=TB_TaskSend/TBSend/SendMailEx	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20140325163926	#P7#=0	#P8#=24	.
+2=#P0#=mb	#P1#=ILoad_Dispose	#P2#=TB_TaskSend/TBSend/ILoad_Dispose	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20130910180855	#P7#=0	#P8#=3	.
+3=#P0#=mb	#P1#=Send	#P2#=TB_TaskSend/TBSend/Send	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910180354	#P7#=0	#P8#=18	.
+4=#P0#=mb	#P1#=OutputHtmls	#P2#=TB_TaskSend/TBSend/OutputHtmls	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910174114	#P7#=0	#P8#=-3	.
+5=#P0#=mb	#P1#=LogEx	#P2#=TB_TaskSend/TBSend/LogEx	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910174020	#P7#=0	#P8#=0	.
+6=#P0#=mb	#P1#=ILoad_Init	#P2#=TB_TaskSend/TBSend/ILoad_Init	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20130910173930	#P7#=0	#P8#=17	.
+7=#P0#=mb	#P1#=DoAction	#P2#=TB_TaskSend/TBSend/DoAction	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910172918	#P7#=0	#P8#=6	.

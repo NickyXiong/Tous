@@ -1,0 +1,41 @@
+[基础资料接口]
+01	2	0	SHOP_			txt	\TEST\pending\
+02	0	4	CRM_	YYYYMMDD	######	txt	\LIVE\Out\
+03	4	0	Temp_			txt	\LIVE\In\
+04	4	0	ART_			xml	\out\processed\
+05	4	0	FWCX_			txt	\crm\UAT\
+06	0	4	SKU_	YYYYMMDDhhmmss		txt	\TG\PROD\PY\OUT\
+07	0	4	SKU_	YYYYMMDDhhmmss		txt	\TG\PROD\PS\OUT\
+08	0	4	SKU_	YYYYMMDDhhmmss		txt	\TG\PROD\ST\OUT\
+09	0	4	CUS_	YYYYMMDDhhmmss		txt	\TG\PROD\PY\OUT\
+10	0	4	CUS_	YYYYMMDDhhmmss		txt	\TG\PROD\PS\OUT\
+11	0	4	CUS_	YYYYMMDDhhmmss		txt	\TG\PROD\ST\OUT\
+
+[统冠接口]
+12	8	0	POS_SAL_			txt	\TEST_POS_to_ERP\SAL\
+13	8	0	POS_REC_			txt	\TEST\
+14	8	0	POS_STR_			txt	\TEST_POS_to_ERP\
+15	8	0	POS_ADJ_			txt	\TEST_POS_to_ERP\
+16	0	4	ASN_	YYYYMMDDHHmmSS		txt	\TG\PROD\PY\Out\
+17	4	0	SHIP_			txt	\TG\PROD\PY\In\
+18	4	0	SHIP_			txt	\TG\PROD\PS\In\
+19	4	0	SHIP_			txt	\TG\PROD\ST\In\
+
+
+[中商接口]
+20	4	0	SHIP_			txt	\BarCodeSynchronization\IN\
+21	4	0	CKSM_			txt	\BarCodeSynchronization\IN\
+22	4	0	BZSM_			txt	\k3.ccn\LIVE\scan\
+23	0	4	CPSJ_	YYYYMMDD	######	txt	\k3.ccn\LIVE\mater\
+24	4	0	CKSM_			txt	\k3.ccn\LIVE\scan\				\
+33	4	0	BZSM_			txt	\k3.ccn\LIVE\barcode\
+
+[WMS接口]
+25	4	0	GRN_			txt	\WMS\PROD\PY\In\
+26	4	0	GRN_			txt	\WMS\PROD\PS\In\
+27	4	0	GRN_			txt	\WMS\PROD\ST\In\
+28	0	4	DSO_	YYYYMMDD	######	txt	\WMS\PROD\PY\Out\
+29	0	4	ASN_	YYYYMMDDHHmmSS		txt	\WMS\PROD\PY\Out\
+30	4	0	SHIP_			txt	\WMS\PROD\PY\In\
+31	4	0	SHIP_			txt	\WMS\PROD\PS\In\
+32	4	0	SHIP_			txt	\WMS\PROD\ST\In\

@@ -1,0 +1,17 @@
+[History]
+1=#P0#=mb	#P1#=DoActionEx	#P2#=TaskSystem/TBTask/DoActionEx	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910160023	#P7#=0	#P8#=15	.
+2=#P0#=mb	#P1#=GetFilename	#P2#=TaskSystem/TBTask/GetFilename	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910155845	#P7#=0	#P8#=21	.
+3=#P0#=mb	#P1#=DoActionByMetadata	#P2#=TaskSystem/TBTask/DoActionByMetadata	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217112933	#P7#=0	#P8#=24	.
+4=#P0#=mb	#P1#=ILoad_Init	#P2#=TaskSystem/TBTask/ILoad_Init	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20131217112716	#P7#=0	#P8#=21	.
+5=#P0#=mb	#P1#=DoAction	#P2#=TaskSystem/mStart/DoAction	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130910152159	#P7#=0	#P8#=4	.
+6=#P0#=mb	#P1#=Main	#P2#=TaskSystem/mStart/Main	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217111909	#P7#=0	#P8#=22	.
+7=#P0#=mb	#P1#=DoActionByMetadatas	#P2#=TaskSystem/TBTask/DoActionByMetadatas	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20131217112739	#P7#=0	#P8#=18	.
+8=#P0#=mb	#P1#=DoActionByMetadatas2	#P2#=TaskSystem/TBTask/DoActionByMetadatas2	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130325171643	#P7#=0	#P8#=18	.
+9=#P0#=mb	#P1#=SameNameString	#P2#=TaskSystem/TBTask/SameNameString	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130223130554	#P7#=0	#P8#=7	.
+10=#P0#=mb	#P1#=RetRemoteDirectory	#P2#=TaskSystem/TBTask/RetRemoteDirectory	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130223130114	#P7#=0	#P8#=2	.
+11=#P0#=mb	#P1#=ILoad_Dispose	#P2#=TaskSystem/TBTask/ILoad_Dispose	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20130218171045	#P7#=0	#P8#=6	.
+12=#P0#=mb	#P1#=DoAction	#P2#=TaskSystem/TBTask/DoAction	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130218170910	#P7#=0	#P8#=10	.
+13=#P0#=mb	#P1#=ILoad_Run	#P2#=TaskSystem/TBTask/ILoad_Run	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20130131203243	#P7#=0	#P8#=1	.
+14=#P0#=mb	#P1#=GetRunParameter	#P2#=TaskSystem/mFunc/GetRunParameter	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130153227	#P7#=0	#P8#=33	.
+15=#P0#=mb	#P1#=GetRunCommand	#P2#=TaskSystem/mFunc/GetRunCommand	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130012429	#P7#=0	#P8#=3	.
+16=#P0#=mb	#P1#=LogEx	#P2#=TaskSystem/mFunc/LogEx	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20130130012429	#P7#=0	#P8#=4	.
