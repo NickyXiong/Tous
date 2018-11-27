@@ -134,7 +134,7 @@ Private Sub ExportXML(strFile As String, billData As Variant, FHQOrigin As Strin
     xmlNode.Text = FHQOrigin
     xmlHeaderElement.appendChild xmlNode
     Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "number", "")
-    xmlNode.Text = Right(billData(0)(0), 6) + 2000 'test
+    xmlNode.Text = billData(0)(0)
     xmlHeaderElement.appendChild xmlNode
     Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "date", "")
     xmlNode.Text = billData(0)(1)

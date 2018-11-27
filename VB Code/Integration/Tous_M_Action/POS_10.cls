@@ -51,44 +51,57 @@ Public Function ImportStockImage(ByVal sDsn As String, varDatas As Variant, ByRe
     Dim strSQL As String
     Dim StrSqlTemp As String
     
+    Dim strAllSQL As New StringBuilder
+    
 On Error GoTo ImportStockImage_Error
 
     InitDataEnv sDsn
     Set CNN = datasource.Connection
 
+    strSQL = "set nocount on"
+    
     For i = LBound(varDatas) To UBound(varDatas)
         If i = 0 Then
-            '检查仓库
-            lFStockID = GetItemID(CNN, CStr(varDatas(i)(0)), 5)
-            If lFStockID = 0 Then
-                 sErr = "Warehouse Master Data [" & CStr(varDatas(i)(0)) & "] is NOT created in ERP system."
-                 GoTo ImportStockImage_Error
-             End If
-                 
-            '检查是否存在，存在则将原有数据先删除
-            strSQL = "select 1 from t_Tous_StockImage where FStockID=" & lFStockID & " and CONVERT(varchar(100),FDate, 23)=CONVERT(varchar(100)," & CStr(varDatas(i)(1)) & ", 23)"
-            Set rs = CNN.Execute(strSQL)
-            If rs.RecordCount > 0 Then
-                strSQL = "delete from t_Tous_StockImage where FStockID=" & lFStockID & " and CONVERT(varchar(100),FDate, 23)=CONVERT(varchar(100)," & CStr(varDatas(i)(1)) & ", 23)"
-                CNN.Execute (strSQL)
+           '检查仓库
+           lFStockID = GetItemID(CNN, CStr(varDatas(i)(0)), 5)
+           If lFStockID = 0 Then
+                sErr = "Warehouse Master Data [" & CStr(varDatas(i)(0)) & "] is NOT created in ERP system."
+                GoTo ImportStockImage_Error
             End If
+                
+           '检查是否存在，存在则将原有数据先删除
+           StrSqlTemp = "select 1 from t_Tous_POSStockImage where CONVERT(varchar(100),FDate, 23)=CONVERT(varchar(100),'" & CStr(varDatas(i)(1)) & "', 23)"
+           Set rs = CNN.Execute(StrSqlTemp)
+           If rs.RecordCount > 0 Then
+               StrSqlTemp = "delete from t_Tous_POSStockImage where CONVERT(varchar(100),FDate, 23)=CONVERT(varchar(100),'" & CStr(varDatas(i)(1)) & "', 23)"
+               CNN.Execute (StrSqlTemp)
+           End If
         End If
-           
-         '检查物料是否存在
-         lFItemID = GetItemIDByNumber(CNN, CStr(varDatas(i)(2)), 4, lUnitID)
-         If lFItemID = 0 Then
-             sErr = "Material Master Data [" & CStr(varDatas(i)(2)) & "] is NOT created in ERP system."
-             GoTo ImportStockImage_Error
-         End If
         
-         '仓位暂时设置为0
-         lSPID = 0
-         
-        strSQL = strSQL & vbCrLf & "insert t_Tous_StockImage (FDate,FItemID,FStockID,FSPID,FUPC,FQty)"
+        '检查物料是否存在
+        lFItemID = GetItemIDByNumber(CNN, CStr(varDatas(i)(2)), 4, lUnitID)
+        If lFItemID = 0 Then
+            sErr = "Material Master Data [" & CStr(varDatas(i)(2)) & "] is NOT created in ERP system."
+            GoTo ImportStockImage_Error
+        End If
+        
+        '仓位暂时设置为0
+        lSPID = 0
+        
+        strSQL = strSQL & vbCrLf & "insert t_Tous_POSStockImage (FDate,FItemID,FStockID,FSPID,FUPC,FQty)"
         strSQL = strSQL & vbCrLf & "values('" & CDate(varDatas(i)(1)) & "'," & lFItemID & "," & lFStockID & "," & lSPID & ",'" & CStr(varDatas(i)(2)) & "'," & Val(varDatas(i)(3)) & ")"
+        
+        If i + 1 Mod 50 = 0 Then
+            CNN.Execute strSQL
+            strSQL = "set nocount on"
+        End If
+        
     Next
-
-    CNN.Execute strSQL
+    
+    If strSQL <> "set nocount on" Then
+        CNN.Execute strSQL
+    End If
+    
     Set CNN = Nothing
     ImportStockImage = True
     GetObjectContext.SetComplete

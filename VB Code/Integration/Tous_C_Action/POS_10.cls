@@ -82,13 +82,26 @@ Public Function ImportStockImage() As Boolean
     Dim sError As String
     Dim lInterID As Long
     Dim sBillNo As String
-    Dim v(1) As Variant
+    Dim v(0) As Variant
     
-   On Error GoTo ImportStockImage_Error
+    Dim strSQL As String
+    Dim rs As ADODB.Recordset
+    
+On Error GoTo ImportStockImage_Error
 
+    strSQL = "select 1 from t_Tous_StockImage where CONVERT(varchar(100),FDate, 23)=CONVERT(varchar(100),'" & Format(Now, "yyyy-mm-dd") & "', 23)"
+    Set rs = TB_Runtime.ExecuteSQL(strSQL)
+    If rs.RecordCount = 0 Then
+        strSQL = "insert t_Tous_StockImage (FDate,FItemID,FStockID,FSPID,FUPC,FQty)"
+        strSQL = strSQL & vbCrLf & "select CONVERT(varchar(100),getdate(), 23) FDate,t1.FItemID,FStockID,FStockPlaceID,t2.FNumber,FQty"
+        strSQL = strSQL & vbCrLf & "from ICInventory t1 inner join t_ICItem t2 on t1.FItemID=t2.FItemID"
+        strSQL = strSQL & vbCrLf & "order by FStockID,FItemID"
+        TB_Runtime.ExecuteSQL (strSQL)
+    End If
+           
     Set vData = New Noteset
-    v(0) = 1
-    v(1) = 2
+    v(0) = 2
+'    v(1) = 2
 '    v(2) = 7
 '    v(3) = 10
     
@@ -106,7 +119,7 @@ Public Function ImportStockImage() As Boolean
             
             If blnSave = True Then
                 If sError = "" Then
-                    TB_Runtime.K3Log m_data, "Import successfully:Store No[" & vBill(0)(0) & "]/Date[" & vBill(0)(1) & "]", False
+                    TB_Runtime.K3Log m_data, "Import stock image successfully:Date[" & vBill(0)(1) & "]", False
                 Else
                     TB_Runtime.K3Log m_data, "Import failed:" & Left(sError, 980), True
                     ImportStockImage = False

@@ -30,6 +30,6 @@ CREATE TABLE t_Tous_POSStockImage
 )
 go
 
-EXEC p_IC_AddIndex 'Idx_Tous_StockImage_FID','t_Tous_POSStockImage','FID'
-EXEC p_IC_AddIndex 'Idx_Tous_StockImage_FDate','t_Tous_POSStockImage','FDate'
+EXEC p_IC_AddIndex 'Idx_Tous_POSStockImage_FID','t_Tous_POSStockImage','FID'
+EXEC p_IC_AddIndex 'Idx_Tous_POSStockImage_FDate','t_Tous_POSStockImage','FDate'
 GO
