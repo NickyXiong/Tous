@@ -106,11 +106,11 @@ On Error GoTo SynBillA01_Error
             sBillNo = ""
             sError = ""
             
-            strSQL = "select * from POOrder where FHQNumber='" & CStr(vBill(0)(2)) & "'"
+            strSQL = "select * from POOrder where FBillNo='" & CStr(vBill(0)(2)) & "'"
             Set rs = TB_Runtime.ExecuteSQL(strSQL)
             
             If rs.RecordCount > 0 Then
-                If rs.Fields("FHQOrigin").Value = "50" Then
+                If rs.Fields("FHQOrigin").Value = "50" Or rs.Fields("FHQOrigin").Value = "" Then
                     blnSave = obj.SynBillA01(m_sDsn, vBill, lInterID, sBillNo, sError)
                 Else
                     blnSave = obj.SyncStockAdjustment(m_sDsn, vBill, lInterID, sBillNo, sError)

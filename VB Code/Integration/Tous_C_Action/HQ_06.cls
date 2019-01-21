@@ -120,6 +120,8 @@ Private Sub ExportXML(strFile As String, billData As Variant)
     Dim xmlAttributs As MSXML2.IXMLDOMAttribute
     Dim i As Integer
     
+    Dim strNumber() As String
+    
     Set xmlDocum = New MSXML2.DOMDocument
     Set xmlRoot = xmlDocum.createElement("ns2:deliveries")
     Set xmlDocum.documentElement = xmlRoot
@@ -137,7 +139,12 @@ Private Sub ExportXML(strFile As String, billData As Variant)
     xmlNode.Text = billData(0)(2)
     xmlHeaderElement.appendChild xmlNode
     Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "number", "")
-    xmlNode.Text = Right(billData(0)(0), 6) + 2000 'test
+    If IsNumeric(billData(0)(0)) = True Then
+        xmlNode.Text = CLng(billData(0)(0))
+    Else
+        strNumber = Split(billData(0)(0), "_")
+        xmlNode.Text = strNumber(0) & Right(strNumber(1), 5)
+    End If
     xmlHeaderElement.appendChild xmlNode
     Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "date", "")
     xmlNode.Text = billData(0)(1)

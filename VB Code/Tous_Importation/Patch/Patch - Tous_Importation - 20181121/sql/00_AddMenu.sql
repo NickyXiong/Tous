@@ -4,4 +4,8 @@ Insert into t_dataflowdetailfunc(FDetailFuncID,FFuncName,FFuncName_CHT,FFuncName
 
 GO
 Update t_DataFlowTimeStamp set fname = fname 
+go
 
+delete from t_ThirdPartyComponent where FTypeDetailID=71 and FComponentName ='Tous_Importation.clsOldBillsControl'
+insert t_ThirdPartyComponent values(0,71,10086,'Tous_Importation.clsOldBillsControl','','')
+go

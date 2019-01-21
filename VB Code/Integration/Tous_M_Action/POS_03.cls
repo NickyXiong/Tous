@@ -45,10 +45,12 @@ Public Function UpdateStockTake(ByVal sDsn As String, varDatas As Variant, ByRef
     Dim rs As ADODB.Recordset
     Dim rsPOInfo As ADODB.Recordset
     
-    Dim i As Integer
+    Dim lFItemID As Long, lUnitID As Long, lFStockID As Long
     
-    Dim strSQL As String
-    Dim StrSqlTemp As String
+    Dim i As Long
+    
+    Dim strSql As String
+    Dim strSQLtemp As String
     
 On Error GoTo UpdateStockTake_Error
 
@@ -65,26 +67,67 @@ On Error GoTo UpdateStockTake_Error
             End If
             
             '检查是否存在，不存在则不允许重复导入
-            StrSqlTemp = "SELECT 1 From ICInvBackup INNER JOIN ICStockBill ON ICInvBackup.FBillInterID=ICStockBill.FInterID"
-            StrSqlTemp = StrSqlTemp & vbCrLf & "WHERE ICInvBackup.FBillNo = '" & CStr(varDatas(i)(1)) & "' and ICStockBill.FTranType in (40,43)"
-            Set rs = CNN.Execute(StrSqlTemp)
+            strSQLtemp = "SELECT 1 From ICInvBackup t1 INNER JOIN ICStockBill t2 ON t1.FBillInterID=t2.FInterID"
+            strSQLtemp = strSQLtemp & vbCrLf & "inner join icstockcheckprocess t3 on t1.FInterID=t3.FID"
+            strSQLtemp = strSQLtemp & vbCrLf & "WHERE t3.FProcessID = '" & CStr(varDatas(i)(1)) & "' and t2.FTranType in (40,43)"
+            Set rs = CNN.Execute(strSQLtemp)
             If rs.RecordCount > 0 Then
                 sErr = "STK Number[" & CStr(varDatas(i)(1)) & "] has already generated Stock Take Bill in ERP system."
                 GoTo UpdateStockTake_Error
             End If
         End If
-           
+            
         
-        strSQL = strSQL & vbCrLf & "update t1 set FQtyAct=" & Val(varDatas(i)(4)) & ",FCheckQty=" & Val(varDatas(i)(4)) & ",FAuxQtyAct=" & Val(varDatas(i)(4)) & ","
-        strSQL = strSQL & vbCrLf & "FAuxCheckQty=" & Val(varDatas(i)(4)) & ",FMinus=" & Val(varDatas(i)(4)) & "-FQty,FNote='" & CStr(varDatas(i)(2)) & "'"
-        strSQL = strSQL & vbCrLf & "From ICInvBackup t1 inner join t_ICItem t2 on t1.FItemID=t2.FItemID"
-        strSQL = strSQL & vbCrLf & "inner join t_Stock t3 on t1.FStockID=t3.fitemid"
-        strSQL = strSQL & vbCrLf & "where t1.FBillNo='" & CStr(varDatas(i)(1)) & "' "
-        strSQL = strSQL & vbCrLf & "and t3.FNumber='" & CStr(varDatas(i)(0)) & "' "  '门店代码
-        strSQL = strSQL & vbCrLf & "and t2.FNumber='" & CStr(varDatas(i)(3)) & "'" 'SKU
+        strSQLtemp = "select 1 From ICInvBackup t1 inner join t_ICItem t2 on t1.FItemID=t2.FItemID"
+        strSQLtemp = strSQLtemp & vbCrLf & "inner join t_Stock t3 on t1.FStockID=t3.fitemid"
+        strSQLtemp = strSQLtemp & vbCrLf & "inner join icstockcheckprocess t4 on t1.FInterID=t4.FID"
+        strSQLtemp = strSQLtemp & vbCrLf & "where t4.FProcessID='" & CStr(varDatas(i)(1)) & "' "
+        strSQLtemp = strSQLtemp & vbCrLf & "and t3.FNumber='" & CStr(varDatas(i)(0)) & "' "  '门店代码
+        strSQLtemp = strSQLtemp & vbCrLf & "and t2.FNumber='" & CStr(varDatas(i)(3)) & "'" 'SKU
+        Set rs = CNN.Execute(strSQLtemp)
+        
+        If rs.RecordCount <= 0 Then
+'            sErr = sErr & "Store[" & CStr(varDatas(i)(0)) & "]/SKU[" & CStr(varDatas(i)(3)) & "] has NOT existed in stock take report."
+            
+            '如果不在盘点方案中，则增加记录
+             '检查物料是否存在
+             lFItemID = GetItemIDByNumber(CNN, CStr(varDatas(i)(3)), 4, lUnitID)
+             If lFItemID = 0 Then
+                 sErr = sErr & "Material Master Data [" & CStr(varDatas(i)(3)) & "] is NOT created in ERP system."
+                 GoTo UpdateStockTake_Error
+             End If
+            
+            '检查仓库是否存在
+            lFStockID = GetItemID(CNN, CStr(varDatas(i)(0)), 5)
+            If lFStockID = 0 Then
+                 sErr = sErr & "Warehouse Master Data [" & CStr(varDatas(i)(0)) & "] is NOT created in ERP system."
+                 GoTo UpdateStockTake_Error
+            End If
+            
+            strSql = strSql & vbCrLf & "insert ICInvBackup "
+            strSql = strSql & vbCrLf & "select top 1 t1.FBrNo," & lFItemID & ",FBatchNo,FStockID,0,FBal,FDateBackup," & Val(varDatas(i)(4)) & ",0,FDateCheck,t1.FChecker,FCheckerMan," & Val(varDatas(i)(4)) & ","
+            strSql = strSql & vbCrLf & "FMinusPercent,'" & CStr(varDatas(i)(2)) & "',FSelect,FAdj," & Val(varDatas(i)(4)) & ",FBillInterID,t1.FMaxBillInterID,FStockPlaceID,t1.FKFPeriod,FKFDate,"
+            strSql = strSql & vbCrLf & "FUnitID,0," & Val(varDatas(i)(4)) & "," & Val(varDatas(i)(4)) & ",t1.FSecUnitID,FInterID,FSecQty,FAdjQty,FAuxPropID,FMTONo,FSecQtyAct,"
+            strSql = strSql & vbCrLf & "FSecCheckQty,FSecAdjQty,FSecMinus,FCheckerID,t1.FStatus,FMultiCheckLevel1,FMultiCheckLevel2,FMultiCheckLevel3,"
+            strSql = strSql & vbCrLf & "FMultiCheckLevel4,FMultiCheckLevel5,FMultiCheckLevel6,FTranType,FBillNo,t1.FDate,FCancelLation,FBillerID,FMultiCheckDate1,"
+            strSql = strSql & vbCrLf & "FMultiCheckDate2 , FMultiCheckDate3, FMultiCheckDate4, FMultiCheckDate5, FMultiCheckDate6, FCurCheckLevel, FCheckDate, FSupplyID"
+            strSql = strSql & vbCrLf & "from ICInvBackup t1 inner join icstockcheckprocess t4 on t1.FInterID=t4.FID"
+            strSql = strSql & vbCrLf & "where t4.FProcessID='" & CStr(varDatas(i)(1)) & "' "
+            
+        Else
+            strSql = strSql & vbCrLf & "update t1 set FQtyAct=" & Val(varDatas(i)(4)) & ",FCheckQty=" & Val(varDatas(i)(4)) & ",FAuxQtyAct=" & Val(varDatas(i)(4)) & ","
+            strSql = strSql & vbCrLf & "FAuxCheckQty=" & Val(varDatas(i)(4)) & ",FMinus=" & Val(varDatas(i)(4)) & "-FQty,FNote='" & CStr(varDatas(i)(2)) & "'"
+            strSql = strSql & vbCrLf & "From ICInvBackup t1 inner join t_ICItem t2 on t1.FItemID=t2.FItemID"
+            strSql = strSql & vbCrLf & "inner join t_Stock t3 on t1.FStockID=t3.fitemid"
+            strSql = strSql & vbCrLf & "inner join icstockcheckprocess t4 on t1.FInterID=t4.FID"
+            strSql = strSql & vbCrLf & "where t4.FProcessID='" & CStr(varDatas(i)(1)) & "' "
+            strSql = strSql & vbCrLf & "and t3.FNumber='" & CStr(varDatas(i)(0)) & "' "  '门店代码
+            strSql = strSql & vbCrLf & "and t2.FNumber='" & CStr(varDatas(i)(3)) & "'" 'SKU
+        End If
+        
     Next
             
-    CNN.Execute strSQL
+    CNN.Execute strSql
     Set CNN = Nothing
     UpdateStockTake = True
     GetObjectContext.SetComplete

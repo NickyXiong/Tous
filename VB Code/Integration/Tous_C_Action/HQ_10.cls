@@ -46,14 +46,33 @@ On Error GoTo HERROR
 
     strOriFileName = datas.FileName
     
-    strSQL = "select t1.FInterID,t1.FBillNo,t4.FNumber,t6.FNumber FCurrency,sum(t2.FQty*t5.FAuxPrice) FAmount"
+'    strSQL = "select t1.FInterID,t1.FBillNo,t4.FNumber,t6.FNumber FCurrency,sum(t2.FQty*t5.FAuxPrice) FAmount"
+'    strSQL = strSQL & vbCrLf & "from ICStockBill t1 inner join ICStockBillEntry t2 on t1.FInterID=t2.FInterID"
+'    strSQL = strSQL & vbCrLf & "inner join t_Department t4 on t1.FDeptID=t4.FItemID"
+'    strSQL = strSQL & vbCrLf & "inner join POOrder t3 on t2.FSourceInterId=t3.FInterID"
+'    strSQL = strSQL & vbCrLf & "inner join POOrderEntry t5 on t5.FInterID=t3.FInterID and t2.FSourceInterId=t5.FInterID and t2.FSourceEntryID=t5.FEntryID"
+'    strSQL = strSQL & vbCrLf & "inner join t_Currency t6 on t3.FCurrencyID=t6.FCurrencyID"
+'    strSQL = strSQL & vbCrLf & "Where t1.FTranType in(1,10) and FROB=1 And t1.FCheckerID > 0 And IsNull(FIsExportedToHQ, 0) = 0 and isnull(FHQOrigin,'')=''"
+'    strSQL = strSQL & vbCrLf & "group by t1.FInterID,t1.FBillNo,t4.Fnumber,t6.FNumber"
+    
+    strSQL = "select t1.FInterID,t1.FBillNo,t4.FNumber,'RMB' FCurrency,sum(t2.FQty*t2.FAuxPrice) FAmount"
+    strSQL = strSQL & vbCrLf & "from ICStockBill t1 inner join ICStockBillEntry t2 on t1.FInterID=t2.FInterID"
+    strSQL = strSQL & vbCrLf & "inner join t_Department t4 on t1.FDeptID=t4.FItemID"
+    strSQL = strSQL & vbCrLf & "left join POOrder t3 on t2.FSourceInterId=t3.FInterID"
+    strSQL = strSQL & vbCrLf & "left join POOrderEntry t5 on t5.FInterID=t3.FInterID and t2.FSourceInterId=t5.FInterID and t2.FSourceEntryID=t5.FEntryID"
+    strSQL = strSQL & vbCrLf & "left join t_Currency t6 on t3.FCurrencyID=t6.FCurrencyID"
+    strSQL = strSQL & vbCrLf & "Where t1.FTranType in(1) and FROB=1 And t1.FCheckerID > 0 and isnull(FHQOrigin,'')='' And IsNull(FIsExportedToHQ, 0) = 0"
+    strSQL = strSQL & vbCrLf & "group by t1.FInterID,t1.FBillNo,t4.Fnumber,t6.FNumber"
+    strSQL = strSQL & vbCrLf & "Union"
+    strSQL = strSQL & vbCrLf & "select t1.FInterID,t1.FBillNo,t4.FNumber,'RMB' FCurrency,sum(t2.FQty*t2.FAuxPrice) FAmount"
     strSQL = strSQL & vbCrLf & "from ICStockBill t1 inner join ICStockBillEntry t2 on t1.FInterID=t2.FInterID"
     strSQL = strSQL & vbCrLf & "inner join t_Department t4 on t1.FDeptID=t4.FItemID"
     strSQL = strSQL & vbCrLf & "inner join POOrder t3 on t2.FSourceInterId=t3.FInterID"
     strSQL = strSQL & vbCrLf & "inner join POOrderEntry t5 on t5.FInterID=t3.FInterID and t2.FSourceInterId=t5.FInterID and t2.FSourceEntryID=t5.FEntryID"
     strSQL = strSQL & vbCrLf & "inner join t_Currency t6 on t3.FCurrencyID=t6.FCurrencyID"
-    strSQL = strSQL & vbCrLf & "Where t1.FTranType in(1,10) and FROB=1 And t1.FCheckerID > 0 And IsNull(FIsExportedToHQ, 0) = 0 and isnull(FHQOrigin,'')=''"
+    strSQL = strSQL & vbCrLf & "Where t1.FTranType in(10) and FROB=1 And t1.FCheckerID > 0 and isnull(FHQOrigin,'')='' And IsNull(FIsExportedToHQ, 0) = 0"
     strSQL = strSQL & vbCrLf & "group by t1.FInterID,t1.FBillNo,t4.Fnumber,t6.FNumber"
+    
 
     Set rs = TB_Runtime.ExecuteSQL(strSQL)
     

@@ -48,8 +48,8 @@ Public Function ImportStockImage(ByVal sDsn As String, varDatas As Variant, ByRe
     Dim i As Integer
     Dim lFStockID As Long, lFItemID As Long, lSPID As Long, lUnitID As Long
     
-    Dim strSQL As String
-    Dim StrSqlTemp As String
+    Dim strSql As String
+    Dim strSQLtemp As String
     
     Dim strAllSQL As New StringBuilder
     
@@ -58,7 +58,13 @@ On Error GoTo ImportStockImage_Error
     InitDataEnv sDsn
     Set CNN = datasource.Connection
 
-    strSQL = "set nocount on"
+    strSQLtemp = "set nocount on"
+    strSQLtemp = strSQLtemp & vbCrLf & "insert t_Tous_StockImage (FDate,FItemID,FStockID,FSPID,FUPC,FQty)"
+    strSQLtemp = strSQLtemp & vbCrLf & "select CONVERT(varchar(100), GETDATE(), 23),t1.FItemID,FStockID,FStockPlaceID,t2.FNumber,FQty"
+    strSQLtemp = strSQLtemp & vbCrLf & "from ICInventory t1 inner join t_ICItem t2 on t1.FItemID=t2.FItemID"
+    CNN.Execute (strSQLtemp)
+           
+    strSql = "set nocount on"
     
     For i = LBound(varDatas) To UBound(varDatas)
         If i = 0 Then
@@ -70,11 +76,11 @@ On Error GoTo ImportStockImage_Error
             End If
                 
            '检查是否存在，存在则将原有数据先删除
-           StrSqlTemp = "select 1 from t_Tous_POSStockImage where CONVERT(varchar(100),FDate, 23)=CONVERT(varchar(100),'" & CStr(varDatas(i)(1)) & "', 23)"
-           Set rs = CNN.Execute(StrSqlTemp)
+           strSQLtemp = "select 1 from t_Tous_POSStockImage where CONVERT(varchar(100),FDate, 23)=CONVERT(varchar(100),'" & CStr(varDatas(i)(1)) & "', 23)"
+           Set rs = CNN.Execute(strSQLtemp)
            If rs.RecordCount > 0 Then
-               StrSqlTemp = "delete from t_Tous_POSStockImage where CONVERT(varchar(100),FDate, 23)=CONVERT(varchar(100),'" & CStr(varDatas(i)(1)) & "', 23)"
-               CNN.Execute (StrSqlTemp)
+               strSQLtemp = "delete from t_Tous_POSStockImage where CONVERT(varchar(100),FDate, 23)=CONVERT(varchar(100),'" & CStr(varDatas(i)(1)) & "', 23)"
+               CNN.Execute (strSQLtemp)
            End If
         End If
         
@@ -88,18 +94,18 @@ On Error GoTo ImportStockImage_Error
         '仓位暂时设置为0
         lSPID = 0
         
-        strSQL = strSQL & vbCrLf & "insert t_Tous_POSStockImage (FDate,FItemID,FStockID,FSPID,FUPC,FQty)"
-        strSQL = strSQL & vbCrLf & "values('" & CDate(varDatas(i)(1)) & "'," & lFItemID & "," & lFStockID & "," & lSPID & ",'" & CStr(varDatas(i)(2)) & "'," & Val(varDatas(i)(3)) & ")"
+        strSql = strSql & vbCrLf & "insert t_Tous_POSStockImage (FDate,FItemID,FStockID,FSPID,FUPC,FQty)"
+        strSql = strSql & vbCrLf & "values('" & CDate(varDatas(i)(1)) & "'," & lFItemID & "," & lFStockID & "," & lSPID & ",'" & CStr(varDatas(i)(2)) & "'," & Val(varDatas(i)(3)) & ")"
         
         If i + 1 Mod 50 = 0 Then
-            CNN.Execute strSQL
-            strSQL = "set nocount on"
+            CNN.Execute strSql
+            strSql = "set nocount on"
         End If
         
     Next
     
-    If strSQL <> "set nocount on" Then
-        CNN.Execute strSQL
+    If strSql <> "set nocount on" Then
+        CNN.Execute strSql
     End If
     
     Set CNN = Nothing

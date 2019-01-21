@@ -56,7 +56,7 @@ Dim n As Integer, i As Integer
 On Error GoTo HERROR
     m_Dsns = m_Dsn
     Init '≥ı ºªØ
-    strSQL = "select t1.FBillNo,CONVERT(varchar(100),t1.FDate, 23) FDate, t3.FNumber FStoreCode,t5.FNumber FItemNumber,"
+    strSQL = "select t1.FBillNo FBillNo,CONVERT(varchar(100),t1.FDate, 23) FDate, t3.FNumber FStoreCode,t5.FNumber FItemNumber,"
     strSQL = strSQL & vbCrLf & "(t2.FQty*t1.FROB) FQty,t4.FNumber FUnit,t5.FName FDesc,t6.FNumber FSupplier,2 FType,t2.FEntryID"
     strSQL = strSQL & vbCrLf & "from ICStockBill t1 inner join ICStockBillEntry t2 on t1.FInterID=t2.FInterID"
     strSQL = strSQL & vbCrLf & "inner join t_Stock t3 on t2.FDCStockID=t3.FItemID"

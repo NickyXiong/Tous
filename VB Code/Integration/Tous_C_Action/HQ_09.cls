@@ -45,8 +45,9 @@ On Error GoTo HERROR
 
     strOriFileName = datas.FileName
     
-    strSQL = "select t1.FInterID,FBillNo,t2.FNumber from ICStockBill t1 inner join t_Department t2 on t1.FDeptID=t2.FItemID "
+    strSQL = "select t1.FInterID,FBillNo,t2.FNumber from ICStockBill t1 "
     strSQL = strSQL & vbCrLf & "inner join ICStockBillEntry t3 on t1.FInterID=t3.FInterID"
+    strSQL = strSQL & vbCrLf & "inner join t_Stock t2 on t3.FDCStockID=t2.FItemID"
     strSQL = strSQL & vbCrLf & "where FTranType in (40,43,10,29) and FCheckerID>0 and isnull(t3.FSourceInterId,0)=0 and isnull(FIsExportedToHQ,0)=0"
     strSQL = strSQL & vbCrLf & "group by t1.FInterID,FBillNo,t2.FNumber"
 
@@ -64,20 +65,29 @@ On Error GoTo HERROR
                 datas.FileName = strNewFileName
                 
                 Set obj = CreateObject("Tous_M_Action.HQ_09")
-                billData = obj.ExportData(m_Dsn, retInfo, rs.Fields("FInterID").Value)
+                billData = obj.ExportData(m_Dsn, retInfo, rs.Fields("FInterID").Value, rs.Fields("FNumber").Value)
                 Set obj = Nothing
                 
                 If TB_Runtime.UboundEx(billData) > -1 Then
                     
                     ExportXML datas.CacheRoot & strNewFileName, billData  '导出数据
                     
-                    TB_Runtime.K3Log datas, "Exportation is successful!Bill No:[" & rs.Fields("FBillNo").Value & "]", False
+                    TB_Runtime.K3Log datas, "Exportation is successful!Bill No:[" & rs.Fields("FBillNo").Value & "]/Store No:[" & rs.Fields("FNumber").Value & "]", False
                 End If
             End With
             Set notDataCLs = Nothing
             
             rs.MoveNext
         Next
+        
+        rs.MoveFirst
+        For i = 1 To rs.RecordCount
+            strSQL = "update ICStockBill set FIsExportedToHQ=1 where FTranType in (40,10,43,29) and FInterID=" & CStr(rs.Fields("FInterID").Value)
+        
+            TB_Runtime.ExecuteSQL (strSQL)
+            rs.MoveNext
+        Next
+        
     End If
     
     ITask_Run = True

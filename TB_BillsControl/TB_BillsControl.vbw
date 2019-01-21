@@ -1,0 +1,10 @@
+clsOldBillsControl = 44, 58, 768, 576, Z
+clsNewBillsControl = 66, 87, 842, 606, 
+MMTS = 132, 132, 838, 499, 
+modPub = 44, 58, 964, 254, 
+MParse = 0, 0, 0, 0, C
+HSXMPlug_4 = 0, 0, 746, 408, 
+frmOpenFile = 154, 203, 1026, 770, , 22, 29, 798, 548, C
+frmOpenFile1 = 44, 58, 822, 418, , 18, 127, 801, 752, C
+frmResolved = 22, 29, 811, 397, , 0, 0, 789, 368, C
+frmSync = 66, 87, 826, 460, , 44, 58, 804, 431, C

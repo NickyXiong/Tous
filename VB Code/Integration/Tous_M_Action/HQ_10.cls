@@ -50,7 +50,7 @@ Private Sub Init() '初始化
 End Sub
 Public Function ExportData(ByVal m_Dsn As String, ByRef retInfo As String, ByVal lInterID As Long) As Variant '更新物料
 Dim rowData() As String
-Dim strSQL As String
+Dim strSql As String
 Dim rs As ADODB.Recordset
 Dim m_billData As Variant
 Dim n As Integer, i As Integer
@@ -58,18 +58,42 @@ Dim n As Integer, i As Integer
 On Error GoTo HERROR
     m_Dsns = m_Dsn
     Init '初始化
-    strSQL = "select t7.FBillNo,CONVERT(varchar(100),t1.FDate, 23) FDate,t3.FNumber FStoreCode,t2.FEntryID,t5.FNumber FItemNumber,t5.FEAN8,t5.FEAN13,"
-    strSQL = strSQL & vbCrLf & "t2.FQty,t6.FAuxPrice,t2.FQty*t6.FAuxPrice FLineAmount,t5.FHQCostPrice,t8.FNumber FSupplierCode"
-    strSQL = strSQL & vbCrLf & "from ICStockBill t1 inner join ICStockBillEntry t2 on t1.FInterID=t2.FInterID"
-    strSQL = strSQL & vbCrLf & "inner join t_Stock t3 on t2.FDCStockID=t3.FItemID"
-    strSQL = strSQL & vbCrLf & "inner join t_ICItem t5 on t2.FItemID=t5.FItemID"
-    strSQL = strSQL & vbCrLf & "inner join POOrderEntry t6 on t2.FSourceInterId=t6.FInterID and t2.FSourceEntryID=t6.FEntryID"
-    strSQL = strSQL & vbCrLf & "inner join POOrder t7 on t6.FInterID=t7.FInterID"
-    strSQL = strSQL & vbCrLf & "inner join t_Supplier t8 on t7.FSupplyID=t8.FItemID"
-    strSQL = strSQL & vbCrLf & "where t1.FTranType in (1,10) and FROB=1 and IsNull(FIsExportedToHQ, 0) = 0 and t1.FInterID=" & CStr(lInterID)
-    strSQL = strSQL & vbCrLf & "order by t1.finterid,t2.FEntryID"
+'    strSql = "select t1.FBillNo,CONVERT(varchar(100),t1.FDate, 23) FDate,t3.FNumber FStoreCode,t2.FEntryID,t5.FNumber FItemNumber,t5.FEAN8,t5.FEAN13,"
+'    strSql = strSql & vbCrLf & "t2.FQty,t6.FAuxPrice,t2.FQty*t6.FAuxPrice FLineAmount,t5.FHQCostPrice,t8.FNumber FSupplierCode"
+'    strSql = strSql & vbCrLf & "from ICStockBill t1 inner join ICStockBillEntry t2 on t1.FInterID=t2.FInterID"
+'    strSql = strSql & vbCrLf & "inner join t_Stock t3 on t2.FDCStockID=t3.FItemID"
+'    strSql = strSql & vbCrLf & "inner join t_ICItem t5 on t2.FItemID=t5.FItemID"
+'    strSql = strSql & vbCrLf & "inner join POOrderEntry t6 on t2.FSourceInterId=t6.FInterID and t2.FSourceEntryID=t6.FEntryID"
+'    strSql = strSql & vbCrLf & "inner join POOrder t7 on t6.FInterID=t7.FInterID"
+'    strSql = strSql & vbCrLf & "inner join t_Supplier t8 on t7.FSupplyID=t8.FItemID"
+'    strSql = strSql & vbCrLf & "where t1.FTranType in (1,10) and FROB=1 and IsNull(FIsExportedToHQ, 0) = 0 and t1.FInterID=" & CStr(lInterID)
+'    strSql = strSql & vbCrLf & "order by t1.finterid,t2.FEntryID"
     
-    Set rs = m_MDConnection.Execute(strSQL)
+    strSql = "select t1.FBillNo,CONVERT(varchar(100),t1.FDate, 23) FDate,t3.FNumber FStoreCode,t2.FEntryID,t5.FNumber FItemNumber,t5.FEAN8,t5.FEAN13,"
+    strSql = strSql & vbCrLf & "t2.FQty,t6.FAuxPrice,t2.FQty*t6.FAuxPrice FLineAmount,t5.FHQCostPrice,t8.FNumber FSupplierCode"
+    strSql = strSql & vbCrLf & "from ICStockBill t1 inner join ICStockBillEntry t2 on t1.FInterID=t2.FInterID"
+    strSql = strSql & vbCrLf & "inner join t_Stock t3 on t2.FDCStockID=t3.FItemID"
+    strSql = strSql & vbCrLf & "inner join t_ICItem t5 on t2.FItemID=t5.FItemID"
+    strSql = strSql & vbCrLf & "left join POOrderEntry t6 on t2.FSourceInterId=t6.FInterID and t2.FSourceEntryID=t6.FEntryID"
+    strSql = strSql & vbCrLf & "left join POOrder t7 on t6.FInterID=t7.FInterID"
+    strSql = strSql & vbCrLf & "left join t_Supplier t8 on t7.FSupplyID=t8.FItemID"
+    strSql = strSql & vbCrLf & "where t1.FTranType in (1) and FROB=1 and IsNull(FIsExportedToHQ, 0) = 0 and t1.FInterID= & CStr(lInterID)"
+    strSql = strSql & vbCrLf & "Union"
+    strSql = strSql & vbCrLf & "select t1.FBillNo,CONVERT(varchar(100),t1.FDate, 23) FDate,t3.FNumber FStoreCode,t2.FEntryID,t5.FNumber FItemNumber,t5.FEAN8,t5.FEAN13,"
+    strSql = strSql & vbCrLf & "t2.FQty,t6.FAuxPrice,t2.FQty*t6.FAuxPrice FLineAmount,t5.FHQCostPrice,t8.FNumber FSupplierCode"
+    strSql = strSql & vbCrLf & "from ICStockBill t1 inner join ICStockBillEntry t2 on t1.FInterID=t2.FInterID"
+    strSql = strSql & vbCrLf & "inner join t_Stock t3 on t2.FDCStockID=t3.FItemID"
+    strSql = strSql & vbCrLf & "inner join t_ICItem t5 on t2.FItemID=t5.FItemID"
+    strSql = strSql & vbCrLf & "inner join POOrderEntry t6 on t2.FSourceInterId=t6.FInterID and t2.FSourceEntryID=t6.FEntryID"
+    strSql = strSql & vbCrLf & "inner join POOrder t7 on t6.FInterID=t7.FInterID"
+    strSql = strSql & vbCrLf & "inner join t_Supplier t8 on t7.FSupplyID=t8.FItemID"
+    strSql = strSql & vbCrLf & "where t1.FTranType in (10) and FROB=1 and IsNull(FIsExportedToHQ, 0) = 0 and t1.FInterID= & CStr(lInterID)"
+    strSql = strSql & vbCrLf & "order by t1.FBillNo,t2.FEntryID"
+    
+    
+    
+    
+    Set rs = m_MDConnection.Execute(strSql)
     
     If Not rs Is Nothing Then
         If rs.RecordCount > 0 Then '导出数据
@@ -87,8 +111,8 @@ On Error GoTo HERROR
     End If
     ExportData = m_billData
     
-    strSQL = "update ICStockBill set FIsExportedToHQ=1 where FInterID=" & CStr(lInterID)
-    m_MDConnection.Execute strSQL
+    strSql = "update ICStockBill set FIsExportedToHQ=1 where FInterID=" & CStr(lInterID)
+    m_MDConnection.Execute strSql
     
     Set rs = Nothing
     Exit Function

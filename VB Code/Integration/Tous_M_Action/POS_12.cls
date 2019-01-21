@@ -47,7 +47,7 @@ Dim rowData() As String
 Dim strSQL As String
 Dim rs As ADODB.Recordset
 Dim m_billData As Variant
-Dim n As Integer, i As Integer
+Dim n As Long, i As Long
 
 On Error GoTo HERROR
     m_Dsns = m_Dsn
@@ -56,7 +56,8 @@ On Error GoTo HERROR
     strSQL = strSQL & vbCrLf & "isnull(t2.FID,'') FFranchiserNo,isnull(t2.FName,'') FFranchiserName"
     strSQL = strSQL & vbCrLf & "from t_Organization t1 left join t_SubMessage t2 on t1.ffranchiserid=t2.FInterID"
     strSQL = strSQL & vbCrLf & "where isnull(FIsExported,0)=0 order by t1.FNumber"
-    Set rs = m_MDConnection.Execute(strSQL)
+'    Set rs = m_MDConnection.Execute(strSQL)
+    Set rs = ExecSQL1(strSQL, m_K3Dsn)
     
     If Not rs Is Nothing Then
         If rs.RecordCount > 0 Then '导出数据
@@ -75,6 +76,7 @@ On Error GoTo HERROR
     ExportData = m_billData
     
     strSQL = "update t_organization set FIsExported=1 where isnull(FIsExported,0)=0"
+    Set rs = ExecSQL1(strSQL, m_K3Dsn)
     m_MDConnection.Execute strSQL
     
     Set rs = Nothing

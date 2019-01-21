@@ -49,7 +49,7 @@ Dim n As Integer, i As Integer
 On Error GoTo HERROR
     m_Dsns = m_Dsn
     Init '³õÊ¼»¯
-    strSQL = "select t2.FBillNo,t3.FNumber FItemNumber,t2.FAuxQtyAct FQty from ICStockCheckProcess t1 inner join ICInvBackup t2 on t1.FID=t2.FInterID "
+    strSQL = "select right(t1.FProcessID,5)FBillNo,t3.FNumber FItemNumber,t2.FAuxQtyAct FQty from ICStockCheckProcess t1 inner join ICInvBackup t2 on t1.FID=t2.FInterID "
     strSQL = strSQL & vbCrLf & "inner join t_ICItem t3 on t2.FItemID =t3.FItemID"
     strSQL = strSQL & vbCrLf & "where t1.FChecker>0 and FRemark like '%HQ%'and isnull(FIsExportedToHQ,0)=0"
     strSQL = strSQL & vbCrLf & "and t1.FID=" & CStr(lInterID) & " and t2.FStockID=" & CStr(lStockID)

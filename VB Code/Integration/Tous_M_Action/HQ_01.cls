@@ -34,6 +34,11 @@ Private fAcctID As Long
 Private fSaleAcctID As Long
 Private fCostAcctID As Long
 
+Private lFMacroFamily As Long
+Private lFFamily As Long
+Private lFType As Long
+Private lFMetal As Long
+
 Private Sub Init()
     Set m_MDConnection = New ADODB.Connection
     With m_MDConnection
@@ -49,15 +54,21 @@ Private Sub Init()
     
     '单位
     fUnnitID = GetFUnitID("PCS", FUnitGroupID)
-    fAcctID = GetFAccountID("1")
-    fSaleAcctID = GetFAccountID("1")
-    fCostAcctID = GetFAccountID("1")
+    fAcctID = GetFAccountID("1405.01")
+    fSaleAcctID = GetFAccountID("6001.01")
+    fCostAcctID = GetFAccountID("6401.02")
+    
+    
+    lFMacroFamily = 0
+    lFFamily = 0
+    lFType = 0
+    lFMetal = 0
 End Sub
 
 Public Function ImportItem(ByVal m_Dsn As String, ByVal dic As KFO.Dictionary, ByRef retInfo As String, ByRef fNumber As String) As Boolean   '保存物料
-Dim strSQL As String
+Dim strSql As String
 Dim rs As ADODB.Recordset
-On Error GoTo HERROR
+On Error GoTo HError
     m_Dsns = m_Dsn
     Init  '初始化
     
@@ -66,8 +77,28 @@ On Error GoTo HERROR
         retInfo = "SKU can not be null"
         Exit Function
     End If
-    strSQL = "SELECT FItemID FROM t_Item t1 WHERE t1.FItemClassID=4 AND t1.FNumber='" & fNumber & "'"
-    Set rs = m_MDConnection.Execute(strSQL)
+    
+    'Add MacroFamily/Family/Type/Metel auto creation - 20190118
+    If Len(dic("macrofamily")) > 0 Then
+        lFMacroFamily = CreateTousItem(m_Dsn, dic("macrofamily"), 3001)
+    End If
+    
+    If Len(dic("family")) > 0 Then
+        lFFamily = CreateTousItem(m_Dsn, dic("family"), 3002)
+    End If
+    
+    If Len(dic("type")) > 0 Then
+        lFType = CreateTousItem(m_Dsn, dic("type"), 3003)
+    End If
+    
+    If Len(dic("metal")) > 0 Then
+        lFMetal = CreateTousItem(m_Dsn, dic("metal"), 3004)
+    End If
+    'Add MacroFamily/Family/Type/Metel auto creation - 20190118
+    
+    
+    strSql = "SELECT FItemID FROM t_Item t1 WHERE t1.FItemClassID=4 AND t1.FNumber='" & fNumber & "'"
+    Set rs = m_MDConnection.Execute(strSql)
     If Not rs Is Nothing Then
         If rs.RecordCount > 0 Then
             ImportItem = UpdateFitem(rs("FItemID"), dic, retInfo)
@@ -80,7 +111,7 @@ On Error GoTo HERROR
     Set rs = Nothing
     GetObjectContext.SetComplete
     Exit Function
-HERROR:
+HError:
     GetObjectContext.SetAbort
     ImportItem = False
     retInfo = Err.Description
@@ -89,25 +120,29 @@ HERROR:
 End Function
 
 Public Function UpdateFitem(ByVal FItemID As String, ByVal dic As KFO.Dictionary, ByRef retInfo As String) As Boolean  '更新物料
-    Dim strSQL As String
+    Dim strSql As String
     
-    strSQL = " UPDATE t_Item SET FName='" & CStr(dic("Desc")) & "',FFullName='" & CStr(dic("Desc")) & "'"
-    strSQL = strSQL & " WHERE FItemID =" & FItemID
-    m_MDConnection.Execute strSQL
+    strSql = " UPDATE t_Item SET FName='" & CStr(dic("Desc")) & "',FFullName='" & CStr(dic("Desc")) & "'"
+    strSql = strSql & " WHERE FItemID =" & FItemID
+    m_MDConnection.Execute strSql
     
-    strSQL = "UPDATE t_ICItem SET "
-    strSQL = strSQL & " FEAN8='" & dic("EAN8") & "',FEAN13='" & dic("EAN13") & "',FHQCurrency='" & dic("Currency") & "', "
-    strSQL = strSQL & " FHQCostPrice=" & Val(dic("HQCostPrice")) & ",FHQRetailPrice='" & Val(dic("HQRetailPrice")) & "', "
-    strSQL = strSQL & " FMacroFamily='" & dic("macrofamily") & "',FFamily='" & dic("family") & "', "
-    strSQL = strSQL & " FTSType='" & dic("type") & "',FMetal='" & dic("metal") & "', "
-    strSQL = strSQL & " FUpdatedFlag =1 WHERE FItemID =" & FItemID
-    m_MDConnection.Execute strSQL
+    strSql = "UPDATE t_ICItem SET "
+    strSql = strSql & " FEAN8='" & dic("EAN8") & "',FEAN13='" & dic("EAN13") & "',FHQCurrency='" & dic("Currency") & "', "
+    strSql = strSql & " FHQCostPrice=" & Val(dic("HQCostPrice")) & ",FHQRetailPrice='" & Val(dic("HQRetailPrice")) & "', "
+    strSql = strSql & " FMacroFamily='" & dic("macrofamily") & "',FFamily='" & dic("family") & "', "
+    strSql = strSql & " FTSType='" & dic("type") & "',FMetal='" & dic("metal") & "', "
+    
+    strSql = strSql & " FMacroFamilyID='" & lFMacroFamily & "',FFamilyID='" & lFFamily & "', "
+    strSql = strSql & " FTSTypeID='" & lFType & "',FMetalID='" & lFMetal & "', "
+    
+    strSql = strSql & " FUpdatedFlag =1 WHERE FItemID =" & FItemID
+    m_MDConnection.Execute strSql
     
     UpdateFitem = True
 End Function
 
 Public Function InsertFitem(ByRef dic As KFO.Dictionary, ByRef retInfo As String) As Boolean  '新增物料
-Dim strSQL As String
+Dim strSql As String
 Dim classItemId As Long
 Dim fNumber As String
 Dim rs As ADODB.Recordset
@@ -129,70 +164,72 @@ Dim rsTemp As ADODB.Recordset
     Set pars = ExceProc("GetICMaxNum", par1, par2, m_MDConnection)
     classItemId = pars("@FInterID").Value '内码
     
-    strSQL = " INSERT INTO t_Item ([FItemID],[FItemClassID],[FParentID],[FNumber],[FDetail],[FName],[FFullName],[FFullNumber])"
-    strSQL = strSQL & vbCrLf & "VALUES (" & classItemId & ",4,0,'" & CStr(dic("SKU")) & "', 1,'" & CStr(dic("Desc")) & "','"
-    strSQL = strSQL & CStr(dic("Desc")) & "','" & CStr(dic("SKU")) & "')"
-    m_MDConnection.Execute strSQL
+    strSql = " INSERT INTO t_Item ([FItemID],[FItemClassID],[FParentID],[FNumber],[FDetail],[FName],[FFullName],[FFullNumber])"
+    strSql = strSql & vbCrLf & "VALUES (" & classItemId & ",4,0,'" & CStr(dic("SKU")) & "', 1,'" & CStr(dic("Desc")) & "','"
+    strSql = strSql & CStr(dic("Desc")) & "','" & CStr(dic("SKU")) & "')"
+    m_MDConnection.Execute strSql
     
-    strSQL = " INSERT INTO t_ICItem([FItemID],[FModel],[FName],[FShortNumber],[FNumber],[FBrNo]" '6列
-    strSQL = strSQL & vbCrLf & ",[FOrderPrice],[FPerWastage],[FErpClsID],[FUnitID],[FUnitGroupID],[FDefaultLoc]"
-    strSQL = strSQL & vbCrLf & ",[FSource],[FQtyDecimal],[FHighLimit]"
-    strSQL = strSQL & vbCrLf & ",[FFullName],[FOrderUnitID],[FSaleUnitID],[FStoreUnitID]"
-    strSQL = strSQL & vbCrLf & ",[FProductUnitID],[FTypeID],[FOrderRector],[FWWHghPrc],[FSOLowPrc],[FSalePrice]"
-    strSQL = strSQL & vbCrLf & ",[FTrack],[FAPAcctID],[FBookPlan],[FBeforeExpire]"
-    strSQL = strSQL & vbCrLf & ",[FTaxRate],[FCheckCycUnit],[FTotalTQQ],[FBatchAppendQty],[FOrderPoint],[FBatFixEconomy]"
-    strSQL = strSQL & vbCrLf & ",[FProductPrincipal],[FDailyConsume],[FPlanner],[FIsSnManage]"
+    strSql = " INSERT INTO t_ICItem([FItemID],[FModel],[FName],[FShortNumber],[FNumber],[FBrNo]" '6列
+    strSql = strSql & vbCrLf & ",[FOrderPrice],[FPerWastage],[FErpClsID],[FUnitID],[FUnitGroupID],[FDefaultLoc]"
+    strSql = strSql & vbCrLf & ",[FSource],[FQtyDecimal],[FHighLimit]"
+    strSql = strSql & vbCrLf & ",[FFullName],[FOrderUnitID],[FSaleUnitID],[FStoreUnitID]"
+    strSql = strSql & vbCrLf & ",[FProductUnitID],[FTypeID],[FOrderRector],[FWWHghPrc],[FSOLowPrc],[FSalePrice]"
+    strSql = strSql & vbCrLf & ",[FTrack],[FAPAcctID],[FBookPlan],[FBeforeExpire]"
+    strSql = strSql & vbCrLf & ",[FTaxRate],[FCheckCycUnit],[FTotalTQQ],[FBatchAppendQty],[FOrderPoint],[FBatFixEconomy]"
+    strSql = strSql & vbCrLf & ",[FProductPrincipal],[FDailyConsume],[FPlanner],[FIsSnManage]"
     
     
-    strSQL = strSQL & vbCrLf & ",[FPOVAcctID],[FPIVAcctID],[FMCVAcctID],[FPCVAcctID],[FSLAcctID],[FCAVAcctID]"
-    strSQL = strSQL & vbCrLf & ",[FProChkMde],[FWWChkMde],[FSOChkMde],[FWthDrwChkMde],[FStkChkMde],[FOtherChkMde]"
-    strSQL = strSQL & vbCrLf & ",[FIdentifier],[FSampStdCritical],[FSampStdStrict],[FSampStdSlight],[FNameEn],[FModelEn]"
-    strSQL = strSQL & vbCrLf & ",[FHSNumber],[FFirstUnitRate],[FSecondUnitRate],[FManageType],[FPlanPrice],[FCtrlType],[FCtrlStraregy]"
-    strSQL = strSQL & vbCrLf & ",[FAcctID],[FSaleAcctID],[FCostAcctID],[FDSManagerID],[FForbbitBarcodeEdit],[FOrderDept],[FAuxInMrpCal]"
+    strSql = strSql & vbCrLf & ",[FPOVAcctID],[FPIVAcctID],[FMCVAcctID],[FPCVAcctID],[FSLAcctID],[FCAVAcctID]"
+    strSql = strSql & vbCrLf & ",[FProChkMde],[FWWChkMde],[FSOChkMde],[FWthDrwChkMde],[FStkChkMde],[FOtherChkMde]"
+    strSql = strSql & vbCrLf & ",[FIdentifier],[FSampStdCritical],[FSampStdStrict],[FSampStdSlight],[FNameEn],[FModelEn]"
+    strSql = strSql & vbCrLf & ",[FHSNumber],[FFirstUnitRate],[FSecondUnitRate],[FManageType],[FPlanPrice],[FCtrlType],[FCtrlStraregy]"
+    strSql = strSql & vbCrLf & ",[FAcctID],[FSaleAcctID],[FCostAcctID],[FDSManagerID],[FForbbitBarcodeEdit],[FOrderDept],[FAuxInMrpCal]"
     
     
     
     '新增自定义字段
-    strSQL = strSQL & vbCrLf & ",[FMacroFamily],[FFamily],[FTSType],[FMetal]"
-    strSQL = strSQL & vbCrLf & ",[FUpdatedFlag],[FEAN8],[FEAN13],[FHQCurrency],[FHQCostPrice],[FHQRetailPrice])"
+    strSql = strSql & vbCrLf & ",[FMacroFamily],[FFamily],[FTSType],[FMetal]"
+    strSql = strSql & vbCrLf & ",[FMacroFamilyID],[FFamilyID],[FTSTypeID],[FMetalID]"
+    strSql = strSql & vbCrLf & ",[FUpdatedFlag],[FEAN8],[FEAN13],[FHQCurrency],[FHQCostPrice],[FHQRetailPrice])"
 
 
     
     '系统标准字段属性值
-    strSQL = strSQL & vbCrLf & " VALUES(" & classItemId & ",'','" & CStr(dic("Desc")) & "','" & CStr(dic("SKU")) & "','" & CStr(dic("SKU")) & "',0,"
-    strSQL = strSQL & vbCrLf & "0,0,1," & fUnnitID & "," & FUnitGroupID & ",0," '需确定单位资料后补填
-    strSQL = strSQL & vbCrLf & "0,4,1000,"
-    strSQL = strSQL & vbCrLf & "'" & CStr(dic("Desc")) & "'," & fUnnitID & "," & fUnnitID & "," & fUnnitID & "," 'FFullName
-    strSQL = strSQL & vbCrLf & "" & fUnnitID & ",0,0,0,0,0,"
-    strSQL = strSQL & vbCrLf & "78,0,0,0," '需确定单位资料后补填
-    strSQL = strSQL & vbCrLf & "16,0,0,1,0,0," '[FBatchAppendQty]
-    strSQL = strSQL & vbCrLf & "0,0,0,0,"
+    strSql = strSql & vbCrLf & " VALUES(" & classItemId & ",'','" & CStr(dic("Desc")) & "','" & CStr(dic("SKU")) & "','" & CStr(dic("SKU")) & "',0,"
+    strSql = strSql & vbCrLf & "0,0,1," & fUnnitID & "," & FUnitGroupID & ",0," '需确定单位资料后补填
+    strSql = strSql & vbCrLf & "0,4,1000,"
+    strSql = strSql & vbCrLf & "'" & CStr(dic("Desc")) & "'," & fUnnitID & "," & fUnnitID & "," & fUnnitID & "," 'FFullName
+    strSql = strSql & vbCrLf & "" & fUnnitID & ",0,0,0,0,0,"
+    strSql = strSql & vbCrLf & "76,0,0,0," '需确定单位资料后补填
+    strSql = strSql & vbCrLf & "16,0,0,1,0,0," '[FBatchAppendQty]
+    strSql = strSql & vbCrLf & "0,0,0,0,"
     
-    strSQL = strSQL & vbCrLf & " 0,0,0,0,0,0,"
-    strSQL = strSQL & vbCrLf & " 352,352,352,352,352,352,"
-    strSQL = strSQL & vbCrLf & " 0,0,0,0,'" & CStr(dic("Desc")) & "','',"
-    strSQL = strSQL & vbCrLf & " 0,0,0,0,0,14039,14041,"
+    strSql = strSql & vbCrLf & " 0,0,0,0,0,0,"
+    strSql = strSql & vbCrLf & " 352,352,352,352,352,352,"
+    strSql = strSql & vbCrLf & " 0,0,0,0,'" & CStr(dic("Desc")) & "','',"
+    strSql = strSql & vbCrLf & " 0,0,0,0,0,14039,14041,"
     
-    strSQL = strSQL & fAcctID & "," & fSaleAcctID & "," & fCostAcctID & ",0,0,0,0,"
+    strSql = strSql & fAcctID & "," & fSaleAcctID & "," & fCostAcctID & ",0,0,0,0,"
     
     '新增自定义字段属性值
-    strSQL = strSQL & vbCrLf & "'" & CStr(dic("macrofamily")) & "','" & CStr(dic("family")) & "','" & CStr(dic("type")) & "','" & CStr(dic("metal")) & "',"
-    strSQL = strSQL & vbCrLf & "1,'" & CStr(dic("EAN8")) & "','" & CStr(dic("EAN13")) & "','" & CStr(dic("Currency")) & "'," & Val(dic("HQCostPrice")) & "," & Val(dic("HQRetailPrice")) & ")"
+    strSql = strSql & vbCrLf & "'" & CStr(dic("macrofamily")) & "','" & CStr(dic("family")) & "','" & CStr(dic("type")) & "','" & CStr(dic("metal")) & "',"
+    strSql = strSql & vbCrLf & "'" & lFMacroFamily & "','" & lFFamily & "','" & lFType & "','" & lFMetal & "',"
+    strSql = strSql & vbCrLf & "1,'" & CStr(dic("EAN8")) & "','" & CStr(dic("EAN13")) & "','" & CStr(dic("Currency")) & "'," & Val(dic("HQCostPrice")) & "," & Val(dic("HQRetailPrice")) & ")"
 
     
-    m_MDConnection.Execute (strSQL)
+    m_MDConnection.Execute (strSql)
     
     InsertFitem = True
 End Function
 
 Private Function GetSubmessageFInterID(ByVal submessageFID As String, ByVal submessageFParentID As String, ByVal submessageFName As String) As String
-Dim strSQL As String
+Dim strSql As String
 Dim rs As ADODB.Recordset
-    strSQL = "SELECT FInterID FROM t_SubMessage WHERE FID='" & submessageFID & "' AND FParentID='" & submessageFParentID & "'"
+    strSql = "SELECT FInterID FROM t_SubMessage WHERE FID='" & submessageFID & "' AND FParentID='" & submessageFParentID & "'"
     If submessageFName <> "" Then
-        strSQL = strSQL & " FName='" & submessageFName & "'"
+        strSql = strSql & " FName='" & submessageFName & "'"
     End If
-    Set rs = m_MDConnection.Execute(strSQL)
+    Set rs = m_MDConnection.Execute(strSql)
     If Not rs Is Nothing Then
         If rs.RecordCount > 0 Then '导出数据
             GetSubmessageFInterID = rs("FInterID")
@@ -206,10 +243,10 @@ Dim rs As ADODB.Recordset
 End Function
 
 Private Function GetFUnitID(ByVal fUnitName As String, ByRef FUnitGroupID As Long) As Long
-Dim strSQL As String
+Dim strSql As String
 Dim rs As ADODB.Recordset
-    strSQL = "SELECT FMeasureUnitID,FUnitGroupID FROM t_MeasureUnit WHERE FName='" & fUnitName & "'"
-    Set rs = m_MDConnection.Execute(strSQL)
+    strSql = "SELECT FMeasureUnitID,FUnitGroupID FROM t_MeasureUnit WHERE FName='" & fUnitName & "'"
+    Set rs = m_MDConnection.Execute(strSql)
     If Not rs Is Nothing Then
         If rs.RecordCount > 0 Then '导出数据
             GetFUnitID = rs("FMeasureUnitID")
@@ -225,10 +262,10 @@ Dim rs As ADODB.Recordset
     Set rs = Nothing
 End Function
 Private Function GetFAccountID(ByVal fAccountNumber As String) As Long
-Dim strSQL As String
+Dim strSql As String
 Dim rs As ADODB.Recordset
-    strSQL = "SELECT  FAccountID FROM t_Account WHERE FNumber='" & fAccountNumber & "'"
-    Set rs = m_MDConnection.Execute(strSQL)
+    strSql = "SELECT  FAccountID FROM t_Account WHERE FNumber='" & fAccountNumber & "'"
+    Set rs = m_MDConnection.Execute(strSql)
     If Not rs Is Nothing Then
         If rs.RecordCount > 0 Then '导出数据
             GetFAccountID = rs("FAccountID")
@@ -263,4 +300,37 @@ Public Function ExceProc(ByVal procName As String, ByVal par1 As ADODB.Parameter
     Set adoComm = Nothing
 End Function
 
+Public Function CreateTousItem(ByVal sDsn As String, ByVal strName As String, ByVal lClassID As Long) As Long
+    Dim item As New KFO.Dictionary
+    Dim number As String
+    Dim strSql As String
+    Dim rs As ADODB.Recordset
+    Dim rsCount As ADODB.Recordset
+On Error Resume Next
+
+    strSql = "SELECT FItemID FROM t_Item_" & CStr(lClassID) & " WHERE FName='" & Trim(strName) & "'"
+    Set rs = m_MDConnection.Execute(strSql)
+    
+    If rs.RecordCount <= 0 Then
+        strSql = "select max(FNumber)FNumber from t_Item_" & CStr(lClassID)
+        Set rsCount = m_MDConnection.Execute(strSql)
+        
+        number = Val(rsCount.Fields("FNumber").Value) + 1
+        item("FNumber") = number
+        item("FFullNumber") = number
+        item("FShortNumber") = number
+        item("FName") = strName
+        
+        item("FDetail") = True '如果是明细，则必须是true，如果是上级组，则是false
+        item("FLevel") = 1
+        item("FParentID") = 0
+        
+        Dim oSave As Object
+        Set oSave = CreateObject("EBSGLItem.ItemUpdate")
+        CreateTousItem = oSave.Create(m_K3Dsn, lClassID, item)
+    Else
+        CreateTousItem = rs.Fields("FItemID").Value
+    End If
+
+End Function
 

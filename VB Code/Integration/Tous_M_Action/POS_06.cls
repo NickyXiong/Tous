@@ -61,7 +61,8 @@ Dim n As Integer, i As Integer
 On Error GoTo HERROR
     m_Dsns = m_Dsn
     Init '≥ı ºªØ
-    strSQL = "select FHQNumber FBillNo,''FNoticeNo,isnull(t4.FName,'') FPurchaseType,CONVERT(varchar(100),t1.FDate, 23) FDate,t3.FNumber FWHCode,'000' FWHBin,"
+'    strSQL = "select case when isnull(FHQNumber,'')='' then t1.FBillNo else FHQNumber end FBillNo,''FNoticeNo,isnull(t4.FName,'') FPurchaseType,CONVERT(varchar(100),t1.FDate, 23) FDate,t3.FNumber FWHCode,'000' FWHBin,"
+    strSQL = "select t1.FBillNo,''FNoticeNo,isnull(t4.FName,'') FPurchaseType,CONVERT(varchar(100),t1.FDate, 23) FDate,t3.FNumber FWHCode,'000' FWHBin,"
     strSQL = strSQL & vbCrLf & "t3.FNumber FStoreCode,'000' FStoreBin,t3.FNumber FBillerID,CONVERT(varchar(100),t1.FDate, 23) FBillDate,"
     strSQL = strSQL & vbCrLf & "t2.FNote,t5.FNumber FItemNumber,Convert(decimal(18,2),t2.FQty)FQty,isnull(t5.FHQRetailPrice,0)FHQRetailPrice,'1'FDicount"
     strSQL = strSQL & vbCrLf & "from POOrder t1 inner join POOrderEntry t2 on t1.FInterID=t2.FInterID"

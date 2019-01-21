@@ -327,7 +327,7 @@ End Function
 
 
 Private Function InsertDataToTable(ByVal vctAllData As KFO.Vector, ByRef strMsg As String) As Boolean
-    Dim I As Long
+    Dim i As Long
     Dim ssql As String
     Dim oconnect As Object
     Dim rs As ADODB.Recordset
@@ -360,23 +360,23 @@ On Error GoTo HErr
     ProgressBar1.Max = vctAllData.UBound
     lblStatus.Caption = "Importing Excel File..."
     
-    For I = vctAllData.LBound To vctAllData.UBound
-         Set dctCheck = vctAllData(I)
+    For i = vctAllData.LBound To vctAllData.UBound
+         Set dctCheck = vctAllData(i)
              
          Set dctTemp = New KFO.Dictionary
 
          
          ssql = "insert t_Tous_STNImportData (FStockOutID,FStockInID,FItemID,FQty,FUUID)"
-         ssql = ssql & vbCrLf & "values('" & vctAllData(I)("FStockOut") & "',"
-         ssql = ssql & "'" & vctAllData(I)("FStockIn") & "',"
-         ssql = ssql & "'" & vctAllData(I)("FSKU") & "',"
-         ssql = ssql & "'" & vctAllData(I)("FQty") & "',"
+         ssql = ssql & vbCrLf & "values('" & vctAllData(i)("FStockOut") & "',"
+         ssql = ssql & "'" & vctAllData(i)("FStockIn") & "',"
+         ssql = ssql & "'" & vctAllData(i)("FSKU") & "',"
+         ssql = ssql & "'" & vctAllData(i)("FQty") & "',"
          ssql = ssql & "'" & strUUID & "')"
          
          dctTemp("sql") = ssql
          vctTemp.Add dctTemp
          Set dctTemp = Nothing
-         ProgressBar1.Value = I
+         ProgressBar1.Value = i
     Next
     
     If strMsg <> "" Then
@@ -387,9 +387,9 @@ On Error GoTo HErr
     
     strAllSQL.Append "set nocount on"
     
-    For I = vctTemp.LBound To vctTemp.UBound
-        strAllSQL.Append vbCrLf & vctTemp(I)("sql")
-        If I Mod 50 = 0 Then
+    For i = vctTemp.LBound To vctTemp.UBound
+        strAllSQL.Append vbCrLf & vctTemp(i)("sql")
+        If i Mod 50 = 0 Then
        '    Debug.Print strAllSQL
             Set oconnect = CreateObject("K3Connection.AppConnection")
             oconnect.Execute (strAllSQL.StringValue)
@@ -470,12 +470,17 @@ End Function
 
 '将文件备份
 Private Sub CopyFile(SourceFile As String, DestFile As String)
+    
+    Dim f As New FileSystemObject
+    Dim file As Object
+    
 On Error GoTo EHandler
 
-    Dim f As New FileSystemObject
     If f.FileExists(SourceFile) = True Then
         If f.FileExists(DestFile) = True Then
-            f.DeleteFile DestFile, True
+'            f.DeleteFile DestFile, True
+            Set file = f.GetFile(DestFile)
+            file.Name = file.Name & "-" & Format(Now, "yyyymmddhhmmss")
         End If
         
         SetAttr SourceFile, vbNormal
@@ -499,20 +504,20 @@ Private Sub ImportFiles(ByVal strSourcePath As String)
     Dim strFileName As String
     Dim arrFileList() As String '用于存放需要导入的文件名称
     Dim strMsg As New StringBuilder
-    Dim I As Integer
+    Dim i As Integer
     Dim vecData As KFO.Vector
     
     If Len(strSourcePath) <> 0 Then
         '读取导入目录下的所有csv文件列表
-        I = 0
-        ReDim Preserve arrFileList(I) As String
+        i = 0
+        ReDim Preserve arrFileList(i) As String
 
         strFileName = Dir(strSourcePath & "\*.csv")
         Do While strFileName <> ""
             If UCase(Right(strFileName, 3)) = "CSV" Then
-                I = I + 1
-                ReDim Preserve arrFileList(I) As String
-                arrFileList(I) = strFileName
+                i = i + 1
+                ReDim Preserve arrFileList(i) As String
+                arrFileList(i) = strFileName
             End If
             strFileName = Dir() '读取下一个文件
         Loop
@@ -522,9 +527,9 @@ Private Sub ImportFiles(ByVal strSourcePath As String)
         End If
 
         '开始逐文件导入
-        For I = 1 To UBound(arrFileList)
+        For i = 1 To UBound(arrFileList)
 '            Call Sleep(50)
-            strFileName = Trim(arrFileList(I))
+            strFileName = Trim(arrFileList(i))
             
 
             Set vecData = ReadExcelFile(strSourcePath & "\" & strFileName)

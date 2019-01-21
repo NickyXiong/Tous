@@ -49,16 +49,17 @@ Dim rowData() As String
 Dim strSQL As String
 Dim rs As ADODB.Recordset
 Dim m_billData As Variant
-Dim n As Integer, i As Integer
+Dim n As Long, i As Long
 
 On Error GoTo HERROR
     m_Dsns = m_Dsn
     Init '≥ı ºªØ
-    strSQL = "select t1.FBillNo,CONVERT(varchar(100),t1.FDateBackup, 23)FDate,t3.FNumber FStoreCode,'000'FStoreBin,"
+    strSQL = "select t4.FProcessID FBillNo,CONVERT(varchar(100),t1.FDateBackup, 23)FDate,t3.FNumber FStoreCode,'000'FStoreBin,"
     strSQL = strSQL & vbCrLf & "t3.FNumber FBillerID,CONVERT(varchar(100),t1.FDateBackup, 23)FBillDate,t1.FNote ,t2.FNumber FItemNumber"
     strSQL = strSQL & vbCrLf & "From ICInvBackup t1 inner join t_ICItem t2 on t1.FItemID=t2.FItemID"
     strSQL = strSQL & vbCrLf & "inner join t_Stock t3 on t1.FStockID=t3.fitemid"
-    strSQL = strSQL & vbCrLf & "where t1.FBillNo='" & strProcess & "'"
+    strSQL = strSQL & vbCrLf & "inner join icstockcheckprocess t4 on t1.FInterID=t4.FID"
+    strSQL = strSQL & vbCrLf & "where t4.FProcessID='" & strProcess & "'"
     strSQL = strSQL & vbCrLf & "order by t3.FNumber,t2.FNumber  "
 
     Set rs = m_MDConnection.Execute(strSQL)

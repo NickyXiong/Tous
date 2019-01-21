@@ -155,23 +155,25 @@ On Error GoTo SynBillA01_Error
                                 
                              
                     '检查采购订单是否存在
-                    Set rsPOInfo = CNN.Execute("select t1.*,t2.*,t3.FNumber FItemNumber from POOrder t1 inner join POOrderEntry t2 on t1.FInterID=t2.FInterID inner join t_ICItem t3 on t2.FItemID=t3.FItemID where FHQNumber='" & CStr(varDatas(i)(2)) & "'")
+                    Set rsPOInfo = CNN.Execute("select t1.*,t2.*,t3.FNumber FItemNumber from POOrder t1 inner join POOrderEntry t2 on t1.FInterID=t2.FInterID inner join t_ICItem t3 on t2.FItemID=t3.FItemID where t1.FBillNo='" & CStr(varDatas(i)(2)) & "'")
                     If rsPOInfo.RecordCount <= 0 Then
                         sErr = "PO[" & CStr(varDatas(i)(2)) & "] does NOT exist in ERP system."
                         GoTo SynBillA01_Error
                     End If
-                                
-                                
+                                                                
                     .SetHeadValue "FDate", CStr(varDatas(i)(4))  '日期
                     .SetHeadValue "FSupplyID", rsPOInfo.Fields("FSupplyID").Value '供应商默认取采购订单供应商
                     .SetHeadValue "FPOMode", 36680 '采购模式:  默认为普通采购
                     .SetHeadValue "FPOStyle", 252  '采购方式: 默认为赊购
+                    
+                    .SetHeadValue "FHQNumber", rsPOInfo.Fields("FHQNumber")
                     
                     .SetHeadValue "FEmpID", rsPOInfo.Fields("FEmpID")
                     .SetHeadValue "FFManagerID", rsPOInfo.Fields("FEmpID")
                     .SetHeadValue "FManagerID", rsPOInfo.Fields("FEmpID")
                     .SetHeadValue "FSManagerID", rsPOInfo.Fields("FEmpID")
                 
+                    .SetHeadValue "FDeptID", rsPOInfo.Fields("FDeptID")
                 
                 End If
                 
@@ -355,7 +357,7 @@ On Error GoTo SynBillA97_Error
                 If i = 0 Then '表头
                 
                     '检查采购订单是否存在
-                    Set rsPOInfo = CNN.Execute("select t1.*,t2.*,t3.FNumber FItemNumber from POOrder t1 inner join POOrderEntry t2 on t1.FInterID=t2.FInterID inner join t_ICItem t3 on t2.FItemID=t3.FItemID where FHQNumber='" & CStr(varDatas(i)(2)) & "'")
+                    Set rsPOInfo = CNN.Execute("select t1.*,t2.*,t3.FNumber FItemNumber from POOrder t1 inner join POOrderEntry t2 on t1.FInterID=t2.FInterID inner join t_ICItem t3 on t2.FItemID=t3.FItemID where t1.FBillNo='" & CStr(varDatas(i)(2)) & "'")
                     If rsPOInfo.RecordCount <= 0 Then
                         sErr = "PO[" & CStr(varDatas(i)(2)) & "] does NOT exist in ERP system."
                         GoTo SynBillA97_Error
@@ -474,7 +476,6 @@ NextRow:
             bRet = .SaveBill(lInterID, sBillNo, sErr)
             If bRet = True Then
                 checkBillData sDsn, lInterID, lTranType, 0, sErr, 16394 '审核单据
-                
             End If
         End If
     End With

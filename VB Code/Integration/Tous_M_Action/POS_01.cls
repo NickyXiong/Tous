@@ -355,6 +355,9 @@ On Error GoTo SynBillB01_Error
             .SetHeadValue "FCurrencyID", 1   '币别：默认本位币
             .SetHeadValue "FExchangeRateType", 1    '汇率类型：默认公司汇率
             .SetHeadValue "FExchangeRate", 1    '汇率：默认1
+            
+            .SetHeadValue "FItemClassID", 1
+            .SetHeadValue "FClassTypeID", 1000002
 
             strSQL = "select FAccountID from t_Account where FNumber='1122.01'"
             Set rsTemp = ExecSQL(strSQL, sDsn)
@@ -364,7 +367,6 @@ On Error GoTo SynBillB01_Error
             '表体赋值
             For j = 1 To rs.RecordCount
                 
-                            
                 .AddRow lRow
                 
                 ROW = lRow
@@ -400,8 +402,8 @@ On Error GoTo SynBillB01_Error
                 .SetEntryValue "FSourceBillNo", rs.Fields("FBillNo").Value, lRow          ''源单编号
                 .SetEntryValue "FSourceInterId", rs.Fields("FInterID").Value, lRow          ''源单内码
                 .SetEntryValue "FSourceEntryID", rs.Fields("FEntryID").Value, lRow          ''源单行号
-'                .SetEntryValue "FOrderInterID", rs.Fields("FInterID").Value, lRow            '
-'                .SetEntryValue "FOrderEntryID", rs.Fields("FEntryID").Value, lRow           '
+'                .SetEntryValue "FOrderInterID", rs.Fields("FInterID").Value, lRow
+'                .SetEntryValue "FOrderEntryID", rs.Fields("FEntryID").Value, lRow
 '                .SetEntryValue "FOrderBillNo", rs.Fields("FBillNo").Value, lRow
 '                .SetEntryValue "FContractBillNo", rs.Fields("FSourceBillNo").Value, lRow
 '                .SetEntryValue "FContractEntryID", rs.Fields("FSourceEntryID").Value, lRow

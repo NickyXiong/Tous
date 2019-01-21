@@ -49,9 +49,9 @@ Private Sub Init() '初始化
     
     m_K3Dsn = "ConnectString={" & m_Dsns & "};UserName=administrator;UserID=16394;DBMS Name=Microsoft SQL Server;DBMS Version=2000/2005;SubID=cc;AcctType=gy;Setuptype=Industry;Language=chs;IP=127.0.0.1;MachineName=127.0.0.1;K3Version=KUE;UUID=00000000-0000-0000-0000-000000000000"
 End Sub
-Public Function ExportData(ByVal m_Dsn As String, ByRef retInfo As String, ByVal lInterID As Long) As Variant '更新物料
+Public Function ExportData(ByVal m_Dsn As String, ByRef retInfo As String, ByVal lInterID As Long, ByVal strStore As String) As Variant '更新物料
 Dim rowData() As String
-Dim strSQL As String
+Dim strSql As String
 Dim rs As ADODB.Recordset
 Dim m_billData As Variant
 Dim n As Integer, i As Integer
@@ -59,17 +59,17 @@ Dim n As Integer, i As Integer
 On Error GoTo HERROR
     m_Dsns = m_Dsn
     Init '初始化
-    strSQL = "select cast(FTranType as nvarchar(2))+right(FBillNo,6) FBillNo,CONVERT(varchar(100),t1.FDate, 23) FDate,t3.FNumber FStoreCode,'000' FStoreBin, "
-    strSQL = strSQL & vbCrLf & "t3.FNumber FBillerID,CONVERT(varchar(100),t1.FDate, 23) FBillDate,t2.FNote,t5.FNumber FItemNumber,"
-    strSQL = strSQL & vbCrLf & "case when FTranType in (40,10) then Convert(decimal(18,2),t2.FQty) else Convert(decimal(18,2),t2.FQty)*-1 end FQty,"
-    strSQL = strSQL & vbCrLf & "isnull(t5.FHQRetailPrice,0)FHQRetailPrice,'1'FDicount,t4.FNumber FUnit,t5.FName FDesc"
-    strSQL = strSQL & vbCrLf & "from ICStockBill t1 inner join ICStockBillEntry t2 on t1.FInterID=t2.FInterID"
-    strSQL = strSQL & vbCrLf & "inner join t_Stock t3 on t2.FDCStockID=t3.FItemID"
-    strSQL = strSQL & vbCrLf & "inner join t_ICItem t5 on t2.FItemID=t5.FItemID"
-    strSQL = strSQL & vbCrLf & "inner join t_MeasureUnit t4 on t5.FUnitID=t4.FItemID "
-    strSQL = strSQL & vbCrLf & "where FTranType in (40,10,43,29) and t1.FInterID=" & CStr(lInterID)
+    strSql = "select t1.FBillNo,CONVERT(varchar(100),t1.FDate, 23) FDate,t3.FNumber FStoreCode,'000' FStoreBin, "
+    strSql = strSql & vbCrLf & "t3.FNumber FBillerID,CONVERT(varchar(100),t1.FDate, 23) FBillDate,t2.FNote,t5.FNumber FItemNumber,"
+    strSql = strSql & vbCrLf & "case when FTranType in (40,10) then Convert(decimal(18,2),t2.FQty) else Convert(decimal(18,2),t2.FQty)*-1 end FQty,"
+    strSql = strSql & vbCrLf & "isnull(t5.FHQRetailPrice,0)FHQRetailPrice,'1'FDicount,t4.FNumber FUnit,t5.FName FDesc"
+    strSql = strSql & vbCrLf & "from ICStockBill t1 inner join ICStockBillEntry t2 on t1.FInterID=t2.FInterID"
+    strSql = strSql & vbCrLf & "inner join t_Stock t3 on t2.FDCStockID=t3.FItemID"
+    strSql = strSql & vbCrLf & "inner join t_ICItem t5 on t2.FItemID=t5.FItemID"
+    strSql = strSql & vbCrLf & "inner join t_MeasureUnit t4 on t5.FUnitID=t4.FItemID "
+    strSql = strSql & vbCrLf & "where FTranType in (40,10,43,29) and t1.FInterID=" & CStr(lInterID) & " and t3.FNumber='" & strStore & "'"
 
-    Set rs = m_MDConnection.Execute(strSQL)
+    Set rs = m_MDConnection.Execute(strSql)
     
     If Not rs Is Nothing Then
         If rs.RecordCount > 0 Then '导出数据
@@ -87,8 +87,8 @@ On Error GoTo HERROR
     End If
     ExportData = m_billData
     
-    strSQL = "update ICStockBill set FIsExportedToHQ=1 where FTranType in (40,10,43,29)  and FInterID=" & CStr(lInterID)
-    m_MDConnection.Execute strSQL
+'    strSql = "update ICStockBill set FIsExportedToHQ=1 where FTranType in (40,10,43,29)  and FInterID=" & CStr(lInterID)
+'    m_MDConnection.Execute strSql
     
     Set rs = Nothing
     Exit Function

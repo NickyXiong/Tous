@@ -57,7 +57,7 @@ On Error GoTo HERROR
     strSQL = strSQL & vbCrLf & "select t1.FInterID,t1.FBillNo,t4.FNumber,t1.fsourStore from ICStockBill t1 inner join ICStockBillEntry t2 on t1.FInterID=t2.FInterID"
     strSQL = strSQL & vbCrLf & "inner join t_Stock t3 on t2.FSCStockID=t3.FItemID"
     strSQL = strSQL & vbCrLf & "inner join t_Stock t4 on t2.FDCStockID=t4.FItemID"
-    strSQL = strSQL & vbCrLf & "Where t1.FTranType = 41 and t3.FNumber='T-WH' group by t1.FInterID,t1.FBillNo,t4.FNumber,t1.fsourStore"
+    strSQL = strSQL & vbCrLf & "Where t1.FTranType = 41 And IsNull(FIsExportedToHQ, 0) = 0 and t3.FNumber='T-WH' group by t1.FInterID,t1.FBillNo,t4.FNumber,t1.fsourStore"
 
     Set rs = TB_Runtime.ExecuteSQL(strSQL)
     
@@ -117,6 +117,8 @@ Private Sub ExportXML(strFile As String, billData As Variant, FHQOrigin As Strin
     Dim xmlAttributs As MSXML2.IXMLDOMAttribute
     Dim i As Integer
     
+    Dim strNumber() As String
+    
     Set xmlDocum = New MSXML2.DOMDocument
     Set xmlRoot = xmlDocum.createElement("tns:deliveries")
     Set xmlDocum.documentElement = xmlRoot
@@ -134,7 +136,12 @@ Private Sub ExportXML(strFile As String, billData As Variant, FHQOrigin As Strin
     xmlNode.Text = FHQOrigin
     xmlHeaderElement.appendChild xmlNode
     Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "number", "")
-    xmlNode.Text = billData(0)(0)
+    If IsNumeric(billData(0)(0)) = True Then
+        xmlNode.Text = CLng(billData(0)(0))
+    Else
+        strNumber = Split(billData(0)(0), "_")
+        xmlNode.Text = strNumber(0) & Right(strNumber(1), 5)
+    End If
     xmlHeaderElement.appendChild xmlNode
     Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "date", "")
     xmlNode.Text = billData(0)(1)

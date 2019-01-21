@@ -10,4 +10,6 @@ Main = 110, 110, 896, 481,
 frmImport = 110, 110, 832, 613, , 154, 154, 876, 657, C
 frmImportSales = 132, 132, 883, 635, , 176, 176, 898, 679, C
 SaveFolder = 0, 0, 0, 0, C
-Application = 44, 44, 766, 547, Z
+Application = 44, 44, 766, 547, 
+clsOldBillsControl = 108, 108, 1291, 612, Z
+frmOpenFile1 = 54, 54, 1439, 328, , 81, 81, 1264, 585, C

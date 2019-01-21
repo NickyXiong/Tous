@@ -2,6 +2,7 @@ Attribute VB_Name = "modPub"
 Option Explicit
 
 Public g_RetailerItemClassID As Long
+Public strMappingFileName As String
 
 Public Function ExecSql(ByVal ssql As String) As Object
     Dim obj As Object

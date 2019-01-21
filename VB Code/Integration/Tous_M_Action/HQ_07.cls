@@ -54,7 +54,7 @@ On Error GoTo HERROR
     m_Dsns = m_Dsn
     Init '≥ı ºªØ
     strSQL = "select t7.FHQNumber FBillNo,CONVERT(varchar(100),t1.FDate, 23) FDate,t3.FNumber FStoreCode,"
-    strSQL = strSQL & vbCrLf & "t2.FEntryID,t5.FNumber FItemNumber,t2.FQty,t4.FNumber FUnit"
+    strSQL = strSQL & vbCrLf & "t2.FSourceEntryID FEntryID,t5.FNumber FItemNumber,t2.FQty,t4.FNumber FUnit"
     strSQL = strSQL & vbCrLf & "from ICStockBill t1 inner join ICStockBillEntry t2 on t1.FInterID=t2.FInterID"
     strSQL = strSQL & vbCrLf & "inner join t_Stock t3 on t2.FDCStockID=t3.FItemID"
     strSQL = strSQL & vbCrLf & "inner join t_ICItem t5 on t2.FItemID=t5.FItemID"

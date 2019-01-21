@@ -115,6 +115,8 @@ Private Sub ExportXML(strFile As String, billData As Variant, Amount As Double, 
     Dim xmlAttributs As MSXML2.IXMLDOMAttribute
     Dim i As Integer, j As Integer
     
+    Dim s() As String, sp() As String
+    
     Set xmlDocum = New MSXML2.DOMDocument
     Set xmlRoot = xmlDocum.createElement("NS1:tickets")
     Set xmlDocum.documentElement = xmlRoot
@@ -150,7 +152,7 @@ Private Sub ExportXML(strFile As String, billData As Variant, Amount As Double, 
     xmlNode.Text = "1"
     xmlHeaderElement.appendChild xmlNode
     Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "amount", "")
-    xmlNode.Text = Round(Amount, 2)
+    xmlNode.Text = Format(Round(Amount, 2), "0.00")
     xmlHeaderElement.appendChild xmlNode
     Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "discount", "")
 '    xmlNode.Text = IIf(Amount + Discount = 0, 0, Round(100 * Discount / (Amount + Discount), 2))
@@ -160,6 +162,22 @@ Private Sub ExportXML(strFile As String, billData As Variant, Amount As Double, 
 '        xmlNode.Text = Round(100 * Discount / (Amount + Discount), 2)
 '    End If
     xmlHeaderElement.appendChild xmlNode
+    
+    'Add Payment Information
+    
+'    s = Split(billData(0)(10), ",")
+'    For i = 0 To UBound(s)
+'        Set xmlItemElement = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "paymentMethods", "")
+'        xmlHeaderElement.appendChild xmlItemElement
+'
+'        sp = Split(Mid(s(i), 2, Len(s(i)) - 2), "/")
+'        Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "idPaymentMethod", "")
+'        xmlNode.Text = "1"
+'        xmlItemElement.appendChild xmlNode
+'        Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "amount", "")
+'        xmlNode.Text = sp(2)
+'        xmlItemElement.appendChild xmlNode
+'    Next
     
     '…Ë÷√item
     For i = 0 To UBound(billData)
@@ -186,23 +204,23 @@ Private Sub ExportXML(strFile As String, billData As Variant, Amount As Double, 
         xmlNode.Text = Val(billData(i)(9))
         xmlItemElement.appendChild xmlNode
         Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "discount", "")
-        xmlNode.Text = Val(billData(i)(8))
+        xmlNode.Text = Format(Round(billData(i)(8), 2), "0.00")
         xmlItemElement.appendChild xmlNode
         Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "netDiscountAmount", "")
-        xmlNode.Text = Val(billData(i)(7))
+        xmlNode.Text = Format(Round(billData(i)(7), 2), "0.00")
         xmlItemElement.appendChild xmlNode
         Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "netAmount", "")
-        xmlNode.Text = Val(billData(i)(9)) / 1.16
+        xmlNode.Text = Format(Round(Val(billData(i)(9)) / 1.16, 2), "0.00")
         xmlItemElement.appendChild xmlNode
         
         '¥¶¿Ìtax
         Set xmlTaxElement = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "taxes", "")
         xmlItemElement.appendChild xmlTaxElement
         Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "taxPercentage", "")
-        xmlNode.Text = "16"
+        xmlNode.Text = "16.00"
         xmlTaxElement.appendChild xmlNode
         Set xmlNode = xmlDocum.createNode(MSXML2.NODE_ELEMENT, "taxValue", "")
-        xmlNode.Text = Val(billData(i)(9)) / 1.16 * 0.16
+        xmlNode.Text = Format(Round(Val(billData(i)(9)) / 1.16 * 0.16, 2), "0.00")
         xmlTaxElement.appendChild xmlNode
         
         
